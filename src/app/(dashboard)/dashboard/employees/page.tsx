@@ -43,7 +43,17 @@ type Employee = {
   status: string;
 };
 
-const emptyEmployee = {
+type EmployeeForm = {
+  name: string;
+  email: string;
+  password?: string;
+  department: string;
+  position: string;
+  salary: number;
+  status: string;
+};
+
+const emptyEmployee: EmployeeForm = {
   name: "",
   email: "",
   password: "",

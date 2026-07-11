@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       }
 
       const checkInTime = today;
-      let status = "PRESENT";
+      let status: "PRESENT" | "ABSENT" | "LATE" | "HOLIDAY" | "LEAVE" = "PRESENT";
       // Check if late (after 9:00 AM for example)
       const checkInHour = checkInTime.getHours();
       const checkInMinute = checkInTime.getMinutes();

@@ -20,10 +20,10 @@ export async function GET(request: Request) {
       where: search
         ? {
             OR: [
-              { name: { contains: search } },
-              { email: { contains: search } },
-              { company: { contains: search } },
-              { phone: { contains: search } },
+              { name: { contains: search, mode: "insensitive" } },
+              { email: { contains: search, mode: "insensitive" } },
+              { company: { contains: search, mode: "insensitive" } },
+              { phone: { contains: search, mode: "insensitive" } },
             ],
           }
         : undefined,
@@ -190,3 +190,4 @@ export async function DELETE(request: Request) {
     );
   }
 }
+

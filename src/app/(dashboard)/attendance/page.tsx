@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Table } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ClockIn, ClockOut, Calendar } from "lucide-react";
+import { Clock, Calendar, LogIn, LogOut } from "lucide-react";
 
 export default function AttendancePage() {
   const [attendance, setAttendance] = useState<any[]>([]);
@@ -92,7 +92,7 @@ export default function AttendancePage() {
               <p className="text-2xl font-bold text-green-600">{presentCount}</p>
             </div>
             <div className="p-3 bg-green-100 rounded-lg">
-              <ClockIn className="w-6 h-6 text-green-600" />
+              <Clock className="w-6 h-6 text-green-600" />
             </div>
           </div>
         </Card>
@@ -116,7 +116,7 @@ export default function AttendancePage() {
               <p className="text-2xl font-bold text-yellow-600">{lateCount}</p>
             </div>
             <div className="p-3 bg-yellow-100 rounded-lg">
-              <ClockOut className="w-6 h-6 text-yellow-600" />
+              <LogOut className="w-6 h-6 text-yellow-600" />
             </div>
           </div>
         </Card>
@@ -154,12 +154,12 @@ export default function AttendancePage() {
                 <div className="flex gap-2">
                   {!row.checkIn && (
                     <Button size="sm" variant="ghost" onClick={() => handleClockIn(row.employeeId)}>
-                      <ClockIn className="w-4 h-4" />
+                      <LogIn className="w-4 h-4" />
                     </Button>
                   )}
                   {row.checkIn && !row.checkOut && (
                     <Button size="sm" variant="ghost" onClick={() => handleClockOut(row.employeeId)}>
-                      <ClockOut className="w-4 h-4" />
+                      <LogOut className="w-4 h-4" />
                     </Button>
                   )}
                 </div>

@@ -1,0 +1,6 @@
+{
+  "name": "company-management-system",
+  "framework": "nextjs",
+  "buildCommand": "prisma generate && next build",
+  "installCommand": "npm install"
+}

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: company_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: company_user
+      POSTGRES_PASSWORD: company_password
+      POSTGRES_DB: company_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - company_network
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: company_app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://company_user:company_password@postgres:5432/company_db
+      JWT_SECRET: your-super-secret-jwt-key-change-this-in-production
+      NODE_ENV: production
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+    depends_on:
+      - postgres
+    networks:
+      - company_network
+
+volumes:
+  postgres_data:
+
+networks:
+  company_network:
+    driver: bridge

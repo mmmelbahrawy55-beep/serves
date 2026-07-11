@@ -1,0 +1,310 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  phone         String?
+  passwordHash  String
+  role          String   @default("EMPLOYEE")
+  department    String?
+  position      String?
+  salary        Float?   @default(0)
+  hireDate      DateTime @default(now())
+  status        String   @default("ACTIVE")
+  avatar        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  attendances   Attendance[]
+  leaves        Leave[]
+  payrolls      Payroll[]
+  clients       Client[]
+  interactions  Interaction[]
+  invoices      Invoice[]
+  purchases     Purchase[]
+  projects      Project[]
+  tasks         Task[]
+  journalEntries JournalEntry[]
+  notifications Notification[]
+}
+
+model Attendance {
+  id         String   @id @default(cuid())
+  employeeId String
+  employee   User     @relation(fields: [employeeId], references: [id])
+  date       DateTime @default(now())
+  checkIn    DateTime?
+  checkOut   DateTime?
+  status     String   @default("PRESENT")
+  notes      String?
+  createdAt  DateTime @default(now())
+
+  @@unique([employeeId, date])
+}
+
+model Leave {
+  id         String   @id @default(cuid())
+  employeeId String
+  employee   User     @relation(fields: [employeeId], references: [id])
+  startDate  DateTime
+  endDate    DateTime
+  type       String
+  reason     String?
+  status     String   @default("PENDING")
+  approvedBy String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Payroll {
+  id          String   @id @default(cuid())
+  employeeId  String
+  employee    User     @relation(fields: [employeeId], references: [id])
+  month       Int
+  year        Int
+  basicSalary Float
+  allowances  Float    @default(0)
+  deductions  Float    @default(0)
+  netSalary   Float
+  status      String   @default("PENDING")
+  paidDate    DateTime?
+  notes       String?
+  createdAt   DateTime @default(now())
+
+  @@unique([employeeId, month, year])
+}
+
+model Client {
+  id          String   @id @default(cuid())
+  name        String
+  email       String?
+  phone       String?
+  company     String?
+  type        String   @default("LEAD")
+  status      String   @default("ACTIVE")
+  notes       String?
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  interactions Interaction[]
+  invoices     Invoice[]
+  projects     Project[]
+}
+
+model Interaction {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  type        String
+  description String
+  date        DateTime @default(now())
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Supplier {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  phone     String?
+  address   String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products  Product[]
+  purchases Purchase[]
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+
+  products Product[]
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  sku         String    @unique
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  unitPrice   Float     @default(0)
+  costPrice   Float     @default(0)
+  quantity    Int       @default(0)
+  minStock    Int       @default(0)
+  supplierId  String?
+  supplier    Supplier? @relation(fields: [supplierId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  invoiceItems  InvoiceItem[]
+  purchaseItems PurchaseItem[]
+}
+
+model Invoice {
+  id            String   @id @default(cuid())
+  invoiceNumber String   @unique
+  clientId      String?
+  client        Client?  @relation(fields: [clientId], references: [id])
+  date          DateTime @default(now())
+  dueDate       DateTime?
+  subtotal      Float    @default(0)
+  taxRate       Float    @default(0)
+  taxAmount     Float    @default(0)
+  discount      Float    @default(0)
+  totalAmount   Float    @default(0)
+  status        String   @default("DRAFT")
+  notes         String?
+  createdById   String
+  createdBy     User     @relation(fields: [createdById], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  items InvoiceItem[]
+}
+
+model InvoiceItem {
+  id          String  @id @default(cuid())
+  invoiceId   String
+  invoice     Invoice @relation(fields: [invoiceId], references: [id])
+  productId   String?
+  product     Product? @relation(fields: [productId], references: [id])
+  description String
+  quantity    Int     @default(1)
+  unitPrice   Float   @default(0)
+  total       Float   @default(0)
+}
+
+model Purchase {
+  id          String   @id @default(cuid())
+  supplierId  String?
+  supplier    Supplier? @relation(fields: [supplierId], references: [id])
+  date        DateTime @default(now())
+  totalAmount Float    @default(0)
+  status      String   @default("PENDING")
+  notes       String?
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  items PurchaseItem[]
+}
+
+model PurchaseItem {
+  id          String   @id @default(cuid())
+  purchaseId  String
+  purchase    Purchase @relation(fields: [purchaseId], references: [id])
+  productId   String?
+  product     Product? @relation(fields: [productId], references: [id])
+  description String
+  quantity    Int      @default(1)
+  unitPrice   Float    @default(0)
+  total       Float    @default(0)
+}
+
+model Account {
+  id        String    @id @default(cuid())
+  code      String    @unique
+  name      String
+  type      String
+  balance   Float     @default(0)
+  parentId  String?
+  parent    Account?  @relation("AccountTree", fields: [parentId], references: [id])
+  children  Account[] @relation("AccountTree")
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  journalLines JournalLine[]
+}
+
+model JournalEntry {
+  id          String   @id @default(cuid())
+  date        DateTime @default(now())
+  description String
+  reference   String?
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdAt   DateTime @default(now())
+
+  lines JournalLine[]
+}
+
+model JournalLine {
+  id             String       @id @default(cuid())
+  journalEntryId String
+  journalEntry   JournalEntry @relation(fields: [journalEntryId], references: [id])
+  accountId      String
+  account        Account      @relation(fields: [accountId], references: [id])
+  debit          Float        @default(0)
+  credit         Float        @default(0)
+  description    String?
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  status      String   @default("PLANNING")
+  budget      Float    @default(0)
+  clientId    String?
+  client      Client?  @relation(fields: [clientId], references: [id])
+  managerId   String?
+  manager     User?    @relation(fields: [managerId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  tasks Task[]
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  projectId   String?
+  project     Project? @relation(fields: [projectId], references: [id])
+  name        String
+  description String?
+  assignedTo  String?
+  assignee    User?    @relation(fields: [assignedTo], references: [id])
+  status      String   @default("TODO")
+  priority    String   @default("MEDIUM")
+  dueDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  message   String
+  type      String   @default("info")
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model SystemSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

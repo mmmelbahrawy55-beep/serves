@@ -52,7 +52,12 @@ export default function RegisterPage() {
         }),
       });
 
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        result = {};
+      }
 
       if (!response.ok) {
         toast.error(result.error || "فشل إنشاء الحساب");
@@ -60,8 +65,9 @@ export default function RegisterPage() {
       }
 
       toast.success("تم إنشاء الحساب بنجاح، يمكنك تسجيل الدخول الآن");
-      router.push("/login");
-    } catch {
+      setTimeout(() => router.push("/login"), 1500);
+    } catch (e) {
+      console.error("Register error:", e);
       toast.error("حدث خطأ في الاتصال بالخادم");
     } finally {
       setIsLoading(false);

@@ -31,7 +31,8 @@ export async function POST(request: Request) {
       { message: "تم إنشاء الحساب بنجاح" },
       { status: 201 }
     );
-  } catch {
+  } catch (error) {
+    console.error("Register error:", error);
     return NextResponse.json(
       { error: "حدث خطأ أثناء إنشاء الحساب" },
       { status: 500 }

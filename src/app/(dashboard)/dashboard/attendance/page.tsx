@@ -59,7 +59,7 @@ export default function AttendancePage() {
   const handleCheckIn = async (employeeId: string) => {
     setCheckingIn(employeeId);
     try {
-      const res = await fetch("/api/attendance/check-in", {
+      const res = await fetch("/api/attendance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ employeeId }),
@@ -76,7 +76,7 @@ export default function AttendancePage() {
 
   const handleCheckOut = async (id: string) => {
     try {
-      const res = await fetch(`/api/attendance/check-out/${id}`, {
+      const res = await fetch(`/api/attendance/${id}/check-out`, {
         method: "PATCH",
       });
       if (!res.ok) throw new Error();

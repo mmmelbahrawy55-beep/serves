@@ -83,11 +83,11 @@ export default function InventoryPage() {
       if (activeTab === "products") {
         const params = new URLSearchParams();
         if (search) params.set("search", search);
-        const res = await fetch(`/api/products?${params}`);
+        const res = await fetch(`/api/inventory/products?${params}`);
         const data = await res.json();
         setProducts(data.products || []);
       } else if (activeTab === "suppliers") {
-        const res = await fetch("/api/suppliers");
+        const res = await fetch("/api/inventory/suppliers");
         const data = await res.json();
         setSuppliers(data.suppliers || []);
       } else {
@@ -109,7 +109,7 @@ export default function InventoryPage() {
   const handleAddProduct = async () => {
     setSaving(true);
     try {
-      const res = await fetch("/api/products", {
+      const res = await fetch("/api/inventory/products", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

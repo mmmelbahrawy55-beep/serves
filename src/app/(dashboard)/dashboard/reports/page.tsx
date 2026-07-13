@@ -26,7 +26,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { toast } from "sonner";
 
 const monthlySales = [
   { month: "يناير", value: 45000 },
@@ -104,20 +103,9 @@ const reportCards = [
 
 export default function ReportsPage() {
   const [selectedReport, setSelectedReport] = useState<string | null>(null);
-  const [generating, setGenerating] = useState(false);
 
   const handleGenerate = async (type: string) => {
     setSelectedReport(type);
-    setGenerating(true);
-    try {
-      const res = await fetch(`/api/reports/${type}`);
-      if (!res.ok) throw new Error();
-      toast.success("تم إنشاء التقرير بنجاح");
-    } catch {
-      toast.error("فشل إنشاء التقرير");
-    } finally {
-      setGenerating(false);
-    }
   };
 
   const renderChart = () => {
@@ -251,14 +239,9 @@ export default function ReportsPage() {
                 variant="primary"
                 className="w-full"
                 onClick={() => handleGenerate(card.type)}
-                disabled={generating && selectedReport === card.type}
               >
-                {generating && selectedReport === card.type ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <Download className="h-4 w-4" />
-                )}
-                إنشاء تقرير
+                <Download className="h-4 w-4" />
+                عرض التقرير
               </Button>
             </CardContent>
           </Card>

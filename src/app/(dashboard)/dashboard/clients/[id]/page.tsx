@@ -140,10 +140,10 @@ export default function ClientDetailPage() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const res = await fetch(`/api/clients/${id}`, {
+      const res = await fetch("/api/clients", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ id, ...formData }),
       });
       if (!res.ok) throw new Error();
       toast.success("تم تحديث بيانات العميل");

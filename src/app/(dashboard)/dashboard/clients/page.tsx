@@ -60,7 +60,7 @@ export default function ClientsPage() {
       if (search) params.set("search", search);
       const res = await fetch(`/api/clients?${params}`);
       const data = await res.json();
-      setClients(data.clients || []);
+      setClients(Array.isArray(data) ? data : []);
     } catch {
       toast.error("فشل تحميل بيانات العملاء");
     } finally {
@@ -94,10 +94,10 @@ export default function ClientsPage() {
     setSaving(true);
     try {
       if (editingClient) {
-        const res = await fetch(`/api/clients/${editingClient.id}`, {
+        const res = await fetch("/api/clients", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ id: editingClient.id, ...formData }),
         });
         if (!res.ok) throw new Error();
         toast.success("تم تحديث بيانات العميل");

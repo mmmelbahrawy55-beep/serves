@@ -83,12 +83,10 @@ export default function InvoiceDetailPage() {
 
   const fetchInvoice = useCallback(async () => {
     try {
-      const res = await fetch(`/api/sales/invoices`);
+      const res = await fetch(`/api/sales/invoices/${id}`);
       if (!res.ok) throw new Error();
-      const invoices: Invoice[] = await res.json();
-      const found = invoices.find((inv) => inv.id === id);
-      if (!found) throw new Error();
-      setInvoice(found);
+      const data = await res.json();
+      setInvoice(data);
     } catch {
       toast.error("فشل تحميل الفاتورة");
     } finally {
@@ -107,10 +105,10 @@ export default function InvoiceDetailPage() {
   const handleStatusChange = async (newStatus: string) => {
     setUpdatingStatus(true);
     try {
-      const res = await fetch(`/api/sales/invoices`, {
+      const res = await fetch(`/api/sales/invoices/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, status: newStatus }),
+        body: JSON.stringify({ status: newStatus }),
       });
       if (!res.ok) throw new Error();
       toast.success("تم تغيير حالة الفاتورة");

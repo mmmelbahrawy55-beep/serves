@@ -71,7 +71,7 @@ export default function ProjectsPage() {
       if (search) params.set("search", search);
       const res = await fetch(`/api/projects?${params}`);
       const data = await res.json();
-      setProjects(data.projects || []);
+      setProjects(Array.isArray(data) ? data : []);
     } catch {
       toast.error("فشل تحميل المشاريع");
     } finally {

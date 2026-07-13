@@ -69,7 +69,11 @@ export default function PayrollPage() {
     try {
       const res = await fetch(`/api/payroll?month=${month}&year=${year}`);
       const data = await res.json();
-      setPayrolls(data.payrolls || []);
+      setPayrolls(Array.isArray(data) ? data.map((r: any) => ({
+        ...r,
+        employeeName: r.employee?.name || "—",
+        baseSalary: r.basicSalary,
+      })) : []);
     } catch {
       toast.error("فشل تحميل بيانات الرواتب");
     } finally {

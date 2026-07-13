@@ -52,9 +52,18 @@ export default function SalesPage() {
     try {
       const params = new URLSearchParams();
       if (search) params.set("search", search);
-      const res = await fetch(`/api/invoices?${params}`);
+      const res = await fetch(`/api/sales/invoices?${params}`);
       const data = await res.json();
-      setInvoices(data.invoices || []);
+      if (Array.isArray(data)) {
+        setInvoices(data.map((inv: any) => ({
+          id: inv.id,
+          number: inv.invoiceNumber,
+          clientName: inv.client?.name || "—",
+          createdAt: inv.date,
+          total: inv.totalAmount,
+          status: inv.status,
+        })));
+      }
     } catch {
       toast.error("فشل تحميل الفواتير");
     } finally {

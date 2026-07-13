@@ -85,15 +85,15 @@ export default function InventoryPage() {
         if (search) params.set("search", search);
         const res = await fetch(`/api/inventory/products?${params}`);
         const data = await res.json();
-        setProducts(data.products || []);
+        setProducts(Array.isArray(data) ? data : []);
       } else if (activeTab === "suppliers") {
         const res = await fetch("/api/inventory/suppliers");
         const data = await res.json();
-        setSuppliers(data.suppliers || []);
+        setSuppliers(Array.isArray(data) ? data : []);
       } else {
         const res = await fetch("/api/purchases");
         const data = await res.json();
-        setPurchases(data.purchases || []);
+        setPurchases(Array.isArray(data) ? data : []);
       }
     } catch {
       toast.error("فشل تحميل البيانات");

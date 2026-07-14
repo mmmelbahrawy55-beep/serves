@@ -30,7 +30,7 @@ export async function GET(
       return NextResponse.json({ error: "الفاتورة غير موجودة" }, { status: 404 });
     }
 
-    return NextResponse.json(invoice, { status: 200 });
+    return NextResponse.json(invoice, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch {
     return NextResponse.json({ error: "حدث خطأ أثناء جلب الفاتورة" }, { status: 500 });
   }

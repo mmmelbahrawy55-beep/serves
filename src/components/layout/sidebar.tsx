@@ -77,7 +77,7 @@ export function Sidebar() {
         animate={{ width: sidebarOpen ? 260 : 64 }}
         transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
         className={cn(
-          "fixed right-0 top-0 z-50 flex h-screen flex-col bg-[#1e293b] text-white shadow-xl",
+          "fixed right-0 top-0 z-50 flex h-screen flex-col bg-gradient-to-b from-[#1a1f3a] to-[#0f1629] text-white shadow-xl",
           "lg:sticky lg:top-0 lg:shadow-none",
           sidebarOpen ? "" : "hidden lg:flex"
         )}
@@ -113,11 +113,11 @@ export function Sidebar() {
                     if (window.innerWidth < 1024) setSidebarOpen(false);
                   }}
                   className={cn(
-                    "flex items-center gap-3 rounded-lg py-3 text-sm transition-colors",
+                    "flex items-center gap-3 rounded-xl py-3 text-sm transition-all duration-200",
                     sidebarOpen ? "mx-2 px-3" : "mx-auto w-fit px-0",
                     active
-                      ? "bg-blue-600/20 text-blue-400"
-                      : "text-gray-300 hover:bg-white/5 hover:text-white"
+                      ? "bg-gradient-to-r from-blue-600/20 to-indigo-600/10 text-blue-400 shadow-sm border border-blue-500/10"
+                      : "text-gray-400 hover:bg-white/5 hover:text-white hover:border-transparent"
                   )}
                   title={!sidebarOpen ? item.label : undefined}
                 >

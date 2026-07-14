@@ -22,7 +22,7 @@ export async function GET() {
       orderBy: { name: "asc" },
     });
 
-    return NextResponse.json(categories, { status: 200 });
+    return NextResponse.json(categories, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch (error) {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب التصنيفات" },

@@ -34,13 +34,15 @@ import { toast } from "sonner";
 type FinancialSummary = {
   totalAssets: number;
   totalLiabilities: number;
-  equity: number;
-  netIncome: number;
+  totalEquity: number;
+  netBalance: number;
+  totalIncome: number;
+  totalExpenses: number;
 };
 
 type JournalEntry = {
   id: string;
-  number: string;
+  reference: string;
   description: string;
   date: string;
   totalDebit: number;
@@ -88,7 +90,7 @@ export default function AccountingPage() {
     },
     {
       title: "حقوق الملكية",
-      value: summary?.equity ?? 0,
+      value: summary?.totalEquity ?? 0,
       icon: DollarSign,
       color: "bg-emerald-500",
       bgColor: "bg-emerald-50",
@@ -96,7 +98,7 @@ export default function AccountingPage() {
     },
     {
       title: "صافي الدخل",
-      value: summary?.netIncome ?? 0,
+      value: summary ? (summary.totalIncome - summary.totalExpenses) : 0,
       icon: PieChart,
       color: "bg-purple-500",
       bgColor: "bg-purple-50",
@@ -198,7 +200,7 @@ export default function AccountingPage() {
                 {recentEntries.map((entry) => (
                   <TableRow key={entry.id}>
                     <TableCell className="font-medium">
-                      {entry.number}
+                      {entry.reference || "—"}
                     </TableCell>
                     <TableCell>{entry.description}</TableCell>
                     <TableCell>{formatDate(entry.date)}</TableCell>

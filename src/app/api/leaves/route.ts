@@ -42,7 +42,7 @@ export async function GET(request: Request) {
       orderBy: { createdAt: "desc" },
     });
 
-    return NextResponse.json(leaves, { status: 200 });
+    return NextResponse.json(leaves, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch (error) {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب طلبات الإجازة" },

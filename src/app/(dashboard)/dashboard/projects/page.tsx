@@ -33,7 +33,7 @@ type Project = {
   budget: number;
   startDate: string;
   endDate: string | null;
-  clientName: string | null;
+  client: { id: string; name: string; company?: string } | null;
 };
 
 const emptyProject = {
@@ -183,7 +183,7 @@ export default function ProjectsPage() {
                         ? formatDate(project.endDate)
                         : "—"}
                     </TableCell>
-                    <TableCell>{project.clientName || "—"}</TableCell>
+                    <TableCell>{project.client?.name || "—"}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

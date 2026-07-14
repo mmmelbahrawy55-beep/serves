@@ -58,7 +58,7 @@ export async function GET() {
         totalDebit: entry.lines.reduce((s, l) => s + l.debit, 0),
         totalCredit: entry.lines.reduce((s, l) => s + l.credit, 0),
       })),
-    });
+    }, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب البيانات المالية" },

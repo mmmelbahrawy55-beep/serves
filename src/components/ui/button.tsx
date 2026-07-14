@@ -2,8 +2,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const variants = {
-  default: "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50",
-  primary: "bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500",
+  default: "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300",
+  primary: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-sm hover:shadow-md focus-visible:ring-blue-500",
   destructive: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
   outline: "border border-gray-200 bg-transparent hover:bg-gray-50 text-gray-900",
   ghost: "bg-transparent hover:bg-gray-100 text-gray-700",

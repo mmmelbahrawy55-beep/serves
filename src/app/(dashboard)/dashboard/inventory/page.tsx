@@ -29,8 +29,8 @@ type Product = {
   id: string;
   name: string;
   sku: string;
-  category: string;
-  price: number;
+  category: { id: string; name: string } | null;
+  unitPrice: number;
   quantity: number;
   minStock: number;
 };
@@ -40,13 +40,12 @@ type Supplier = {
   name: string;
   email: string;
   phone: string;
-  status: string;
 };
 
 type Purchase = {
   id: string;
-  supplierName: string;
-  total: number;
+  supplier: { id: string; name: string; email?: string } | null;
+  totalAmount: number;
   status: string;
   createdAt: string;
 };
@@ -60,8 +59,8 @@ const tabs = [
 const emptyProduct = {
   name: "",
   sku: "",
-  category: "",
-  price: 0,
+  categoryId: "",
+  unitPrice: 0,
   quantity: 0,
   minStock: 5,
 };
@@ -171,8 +170,8 @@ export default function InventoryPage() {
             <TableRow key={product.id}>
               <TableCell className="font-medium">{product.name}</TableCell>
               <TableCell className="text-gray-500">{product.sku}</TableCell>
-              <TableCell>{product.category}</TableCell>
-              <TableCell>{formatCurrency(product.price)}</TableCell>
+              <TableCell>{product.category?.name || "—"}</TableCell>
+              <TableCell>{formatCurrency(product.unitPrice)}</TableCell>
               <TableCell>{product.quantity}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
@@ -204,13 +203,12 @@ export default function InventoryPage() {
           <TableHead>الاسم</TableHead>
           <TableHead>البريد</TableHead>
           <TableHead>الهاتف</TableHead>
-          <TableHead>الحالة</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {suppliers.length === 0 ? (
           <TableRow>
-            <TableCell colSpan={4} className="text-center text-gray-500 py-8">
+            <TableCell colSpan={3} className="text-center text-gray-500 py-8">
               لا يوجد موردين
             </TableCell>
           </TableRow>
@@ -219,8 +217,7 @@ export default function InventoryPage() {
             <TableRow key={supplier.id}>
               <TableCell className="font-medium">{supplier.name}</TableCell>
               <TableCell>{supplier.email}</TableCell>
-              <TableCell>{supplier.phone}</TableCell>
-              <TableCell>{statusBadge(supplier.status)}</TableCell>
+              <TableCell>{supplier.phone || "—"}</TableCell>
             </TableRow>
           ))
         )}
@@ -249,9 +246,9 @@ export default function InventoryPage() {
           purchases.map((purchase) => (
             <TableRow key={purchase.id}>
               <TableCell className="font-medium">
-                {purchase.supplierName}
+                {purchase.supplier?.name || "—"}
               </TableCell>
-              <TableCell>{formatCurrency(purchase.total)}</TableCell>
+              <TableCell>{formatCurrency(purchase.totalAmount)}</TableCell>
               <TableCell>{statusBadge(purchase.status)}</TableCell>
               <TableCell>
                 {new Date(purchase.createdAt).toLocaleDateString("ar-EG")}
@@ -326,18 +323,18 @@ export default function InventoryPage() {
             }
           />
           <Input
-            label="الفئة"
-            value={formData.category}
+            label="معرف الفئة"
+            value={formData.categoryId}
             onChange={(e) =>
-              setFormData({ ...formData, category: e.target.value })
+              setFormData({ ...formData, categoryId: e.target.value })
             }
           />
           <Input
-            label="السعر"
+            label="سعر الوحدة"
             type="number"
-            value={formData.price}
+            value={formData.unitPrice}
             onChange={(e) =>
-              setFormData({ ...formData, price: Number(e.target.value) })
+              setFormData({ ...formData, unitPrice: Number(e.target.value) })
             }
           />
           <Input

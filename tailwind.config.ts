@@ -21,6 +21,18 @@ const config: Config = {
           800: '#144f67',
           900: '#154258',
         },
+        accent: {
+          50: '#f5f3ff',
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6',
+          600: '#7c3aed',
+          700: '#6d28d9',
+          800: '#5b21b6',
+          900: '#4c1d95',
+        },
         medical: {
           mint: '#a8e6cf',
           navy: '#0a2540',
@@ -30,8 +42,20 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-tajawal)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-tajawal)', 'system-ui', 'sans-serif'],
+        sans: ['Alexandria', 'Tajawal', 'system-ui', 'sans-serif'],
+        display: ['Alexandria', 'Tajawal', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'soft-md': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 30px -5px rgba(0, 0, 0, 0.06)',
+        'soft-lg': '0 10px 40px -10px rgba(0, 0, 0, 0.15), 0 20px 50px -10px rgba(0, 0, 0, 0.08)',
+        'glow-blue': '0 0 20px rgba(30, 150, 182, 0.15)',
+        'glow-purple': '0 0 20px rgba(139, 92, 246, 0.15)',
+      },
+      borderRadius: {
+        'xl': '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease-in-out',
@@ -57,6 +81,9 @@ const config: Config = {
       backgroundImage: {
         'gradient-medical': 'linear-gradient(135deg, #0a2540 0%, #1a3a5c 50%, #00b4d8 100%)',
         'gradient-soft': 'linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%)',
+        'gradient-modern': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+        'gradient-cool': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
         'radial-glow': 'radial-gradient(circle at 50% 50%, rgba(0,180,216,0.15) 0%, transparent 70%)',
       },
     },

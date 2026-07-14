@@ -56,7 +56,7 @@ export async function GET(request: Request) {
       orderBy: { date: "desc" },
     });
 
-    return NextResponse.json(entries, { status: 200 });
+    return NextResponse.json(entries, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch (error) {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب قيود اليومية" },

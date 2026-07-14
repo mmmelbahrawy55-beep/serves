@@ -22,7 +22,7 @@ export async function GET() {
       orderBy: { code: "asc" },
     });
 
-    return NextResponse.json(accounts, { status: 200 });
+    return NextResponse.json(accounts, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch (error) {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب الحسابات" },

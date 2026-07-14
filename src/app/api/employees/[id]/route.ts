@@ -52,7 +52,7 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(employee, { status: 200 });
+    return NextResponse.json(employee, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch (error) {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب بيانات الموظف" },

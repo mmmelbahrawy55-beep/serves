@@ -62,17 +62,17 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 lg:px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-gray-100 bg-white/80 backdrop-blur-sm px-4 lg:px-6 shadow-sm">
       <button
         type="button"
         onClick={toggleSidebar}
-        className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100"
+        className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
       >
         <Menu className="h-5 w-5" />
       </button>
 
-      <div className="flex items-center gap-2 text-sm">
-        <span className="font-medium text-gray-900">{pageTitle}</span>
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-bold text-gray-900 tracking-tight">{pageTitle}</span>
       </div>
 
       <div className="flex flex-1" />
@@ -80,10 +80,10 @@ export function Navbar() {
       <div className="flex items-center gap-2">
         <button
           type="button"
-          className="relative flex h-10 w-10 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100"
+          className="relative flex h-10 w-10 items-center justify-center rounded-xl text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
         >
           <Bell className="h-5 w-5" />
-          <Badge variant="danger" className="absolute -top-1 -right-1 flex h-5 min-w-[20px] items-center justify-center px-1 text-[10px]">
+          <Badge variant="danger" className="absolute -top-0.5 -right-0.5 flex h-5 min-w-[20px] items-center justify-center px-1 text-[10px]">
             3
           </Badge>
         </button>
@@ -93,12 +93,12 @@ export function Navbar() {
           trigger={
             <button
               type="button"
-              className="flex items-center gap-2 rounded-lg p-1.5 text-sm transition-colors hover:bg-gray-100"
+              className="flex items-center gap-2 rounded-xl p-1.5 text-sm transition-colors hover:bg-gray-100 hover:shadow-sm"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-xs font-medium text-white">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-xs font-bold text-white shadow-sm">
                 {currentUser?.name?.charAt(0) || "U"}
               </div>
-              <span className="hidden font-medium text-gray-700 sm:block">
+              <span className="hidden font-semibold text-gray-700 sm:block">
                 {currentUser?.name || "مستخدم"}
               </span>
               <ChevronDown className="hidden h-4 w-4 text-gray-400 sm:block" />

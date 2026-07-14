@@ -14,7 +14,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
 
   return (
-    <div className="flex min-h-screen bg-gray-50" dir="rtl">
+    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20" dir="rtl">
       <Sidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <Navbar />

@@ -69,7 +69,7 @@ export async function GET(request: Request) {
       };
     });
 
-    return NextResponse.json(result, { status: 200 });
+    return NextResponse.json(result, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
   } catch (error) {
     console.error("Error fetching attendance:", error);
     return NextResponse.json(

@@ -101,7 +101,7 @@ export async function GET() {
           status: emp.status,
         })),
       },
-      { status: 200 }
+      { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } }
     );
   } catch (error) {
     console.error("Error fetching dashboard stats:", error);

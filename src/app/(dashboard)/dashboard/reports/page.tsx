@@ -6,23 +6,7 @@ import {
   Package,
   DollarSign,
   Download,
-  Loader2,
 } from "lucide-react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-} from "recharts";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -108,106 +92,86 @@ export default function ReportsPage() {
     setSelectedReport(type);
   };
 
+  const SimpleBarChart = ({ data }: { data: typeof monthlySales }) => {
+    const max = Math.max(...data.map(d => d.value));
+    return (
+      <div className="h-80 flex items-end gap-2" dir="ltr">
+        {data.map((d, i) => (
+          <div key={i} className="flex-1 flex flex-col items-center gap-1">
+            <span className="text-xs text-gray-500">{Math.round(d.value / 1000)}k</span>
+            <div
+              className="w-full rounded-t-md transition-all duration-500"
+              style={{
+                height: `${(d.value / max) * 100}%`,
+                backgroundColor: PIE_COLORS[i % PIE_COLORS.length],
+                minHeight: 4,
+              }}
+            />
+            <span className="text-xs text-gray-500">{d.month}</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const SimplePieChart = ({ data }: { data: typeof departmentEmployees }) => {
+    const total = data.reduce((s, d) => s + d.value, 0);
+    return (
+      <div className="flex flex-wrap gap-4 justify-center p-4">
+        {data.map((d, i) => (
+          <div key={i} className="flex items-center gap-2 text-sm">
+            <span className="w-3 h-3 rounded-full" style={{ backgroundColor: PIE_COLORS[i % PIE_COLORS.length] }} />
+            <span>{d.name}</span>
+            <span className="text-gray-500">{Math.round((d.value / total) * 100)}%</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const SimpleLineChart = ({ data }: { data: typeof financialData }) => {
+    const allValues = data.flatMap(d => [d.إيرادات, d.مصروفات]);
+    const max = Math.max(...allValues);
+    return (
+      <div className="h-80 relative" dir="ltr">
+        <svg viewBox={`0 0 ${data.length * 80} 280`} className="w-full h-full">
+          {data.map((d, i) => {
+            const x = i * 80 + 40;
+            const revY = 240 - (d.إيرادات / max) * 220;
+            const expY = 240 - (d.مصروفات / max) * 220;
+            return (
+              <g key={i}>
+                {i > 0 && (
+                  <>
+                    <line x1={(i-1)*80+40} y1={240 - (data[i-1].إيرادات / max) * 220} x2={x} y2={revY} stroke="#3B82F6" strokeWidth="2" />
+                    <line x1={(i-1)*80+40} y1={240 - (data[i-1].مصروفات / max) * 220} x2={x} y2={expY} stroke="#EF4444" strokeWidth="2" />
+                  </>
+                )}
+                <circle cx={x} cy={revY} r="4" fill="#3B82F6" />
+                <circle cx={x} cy={expY} r="4" fill="#EF4444" />
+                <text x={x} y="270" textAnchor="middle" fontSize="11" fill="#9CA3AF">{d.month.substring(0, 4)}</text>
+              </g>
+            );
+          })}
+        </svg>
+        <div className="absolute top-2 left-2 flex gap-4 text-xs">
+          <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-blue-500 inline-block" /> إيرادات</span>
+          <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-red-500 inline-block" /> مصروفات</span>
+        </div>
+      </div>
+    );
+  };
+
   const renderChart = () => {
     switch (selectedReport) {
       case "sales":
-        return (
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={monthlySales}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="month" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" />
-                <Tooltip />
-                <Bar dataKey="value" fill="#3B82F6" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        );
+        return <SimpleBarChart data={monthlySales} />;
       case "employees":
-        return (
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={departmentEmployees}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={60}
-                  outerRadius={120}
-                  paddingAngle={3}
-                  dataKey="value"
-                  label={({ name, percent }) =>
-                    `${name} ${(percent * 100).toFixed(0)}%`
-                  }
-                >
-                  {departmentEmployees.map((_, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={PIE_COLORS[index % PIE_COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        );
+        return <SimplePieChart data={departmentEmployees} />;
       case "inventory":
-        return (
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={inventoryCategories}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={120}
-                  dataKey="value"
-                  label={({ name, percent }) =>
-                    `${name} ${(percent * 100).toFixed(0)}%`
-                  }
-                >
-                  {inventoryCategories.map((_, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={PIE_COLORS[index % PIE_COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-        );
+        return <SimplePieChart data={inventoryCategories} />;
       case "financial":
-        return (
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={financialData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="month" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="إيرادات"
-                  stroke="#3B82F6"
-                  strokeWidth={2}
-                  dot={{ fill: "#3B82F6" }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="مصروفات"
-                  stroke="#EF4444"
-                  strokeWidth={2}
-                  dot={{ fill: "#EF4444" }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        );
+        return <SimpleLineChart data={financialData} />;
       default:
         return null;
     }
@@ -269,17 +233,7 @@ export default function ReportsPage() {
           <CardDescription>عرض المبيعات خلال الأشهر الستة الماضية</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={monthlySales}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="month" stroke="#9CA3AF" />
-                <YAxis stroke="#9CA3AF" />
-                <Tooltip />
-                <Bar dataKey="value" fill="#3B82F6" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <SimpleBarChart data={monthlySales} />
         </CardContent>
       </Card>
     </div>

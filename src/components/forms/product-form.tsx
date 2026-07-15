@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
 import { Package, FileText, Hash, Tag, DollarSign, Box, AlertTriangle, Truck } from "lucide-react";
 
 type ProductFormProps = {
@@ -54,11 +53,7 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={initialData ? "تعديل منتج" : "إضافة منتج جديد"}>
       <form onSubmit={handleSubmit} className="space-y-5">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
+        <div>
           <div className="relative">
             <Package className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
             <input
@@ -70,13 +65,9 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
               className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
+        <div>
           <div className="relative">
             <FileText className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
             <textarea
@@ -86,13 +77,9 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
               className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all min-h-[80px] resize-none"
             />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
+        <div>
           <div className="relative">
             <Hash className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
             <input
@@ -104,14 +91,10 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
               className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
           </div>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
+          <div>
             <div className="relative">
               <Tag className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <select
@@ -127,13 +110,9 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
                 ))}
               </select>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
+          <div>
             <div className="relative">
               <Truck className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <select
@@ -149,15 +128,11 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
                 ))}
               </select>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
+          <div>
             <div className="relative">
               <DollarSign className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -169,13 +144,9 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
+          <div>
             <div className="relative">
               <DollarSign className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -186,15 +157,11 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-          >
+          <div>
             <div className="relative">
               <Box className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -206,13 +173,9 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-          >
+          <div>
             <div className="relative">
               <AlertTriangle className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -223,15 +186,10 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0 }}
-          className="flex gap-3 pt-4"
-        >
+        <div className="flex gap-3 pt-4">
           <Button
             type="submit"
             variant="primary"
@@ -256,7 +214,7 @@ export function ProductForm({ isOpen, onClose, onSubmit, initialData, categories
           >
             إلغاء
           </Button>
-        </motion.div>
+        </div>
       </form>
     </Modal>
   );

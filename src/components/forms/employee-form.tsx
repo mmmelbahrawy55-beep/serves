@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Modal } from "@/components/ui/modal";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
 import { User, Mail, Phone, Lock, Building, Briefcase, DollarSign, Shield } from "lucide-react";
 
 type EmployeeFormProps = {
@@ -52,11 +51,7 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={initialData ? "تعديل موظف" : "إضافة موظف جديد"}>
       <form onSubmit={handleSubmit} className="space-y-5">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
+        <div>
           <div className="relative">
             <User className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
             <input
@@ -68,13 +63,9 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
               className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
+        <div>
           <div className="relative">
             <Mail className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
             <input
@@ -86,13 +77,9 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
               className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
+        <div>
           <div className="relative">
             <Phone className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
             <input
@@ -103,14 +90,10 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
               className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             />
           </div>
-        </motion.div>
+        </div>
 
         {!initialData && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
+          <div>
             <div className="relative">
               <Lock className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -122,15 +105,11 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
         )}
 
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
+          <div>
             <div className="relative">
               <Building className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -141,13 +120,9 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
+          <div>
             <div className="relative">
               <Briefcase className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -158,15 +133,11 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
+          <div>
             <div className="relative">
               <DollarSign className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <input
@@ -177,13 +148,9 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
                 className="w-full pr-10 pl-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-          >
+          <div>
             <div className="relative">
               <Shield className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
               <select
@@ -196,15 +163,10 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
                 <option value="ADMIN">مسؤول</option>
               </select>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="flex gap-3 pt-4"
-        >
+        <div className="flex gap-3 pt-4">
           <Button
             type="submit"
             variant="primary"
@@ -229,7 +191,7 @@ export function EmployeeForm({ isOpen, onClose, onSubmit, initialData }: Employe
           >
             إلغاء
           </Button>
-        </motion.div>
+        </div>
       </form>
     </Modal>
   );

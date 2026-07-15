@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Plus, Pencil, Search, Loader2, AlertTriangle, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -75,6 +76,14 @@ export default function InventoryPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState(emptyProduct);
   const [saving, setSaving] = useState(false);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (tab && ["products", "suppliers", "purchases"].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
 
   const fetchData = async () => {
     setIsLoading(true);

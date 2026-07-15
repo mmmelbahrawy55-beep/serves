@@ -161,7 +161,7 @@ export default function ProjectsPage() {
                     key={project.id}
                     className="cursor-pointer"
                     onClick={() =>
-                      router.push(`/projects/${project.id}`)
+                      router.push(`/dashboard/projects/${project.id}`)
                     }
                   >
                     <TableCell className="font-medium">

@@ -201,7 +201,7 @@ export default function ClientDetailPage() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500 text-lg">العميل غير موجود</p>
-        <Button variant="outline" className="mt-4" onClick={() => router.push("/clients")}>
+        <Button variant="outline" className="mt-4" onClick={() => router.push("/dashboard/clients")}>
           <ArrowRight className="h-4 w-4" />
           العودة للعملاء
         </Button>
@@ -213,7 +213,7 @@ export default function ClientDetailPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" onClick={() => router.push("/clients")}>
+          <Button variant="ghost" size="sm" onClick={() => router.push("/dashboard/clients")}>
             <ArrowRight className="h-4 w-4" />
           </Button>
           <div>
@@ -363,7 +363,7 @@ export default function ClientDetailPage() {
                     <TableRow
                       key={inv.id}
                       className="cursor-pointer"
-                      onClick={() => router.push(`/sales/invoices/${inv.id}`)}
+                      onClick={() => router.push(`/dashboard/sales/invoices/${inv.id}`)}
                     >
                       <TableCell className="font-medium">{inv.invoiceNumber}</TableCell>
                       <TableCell>{formatDate(inv.date)}</TableCell>

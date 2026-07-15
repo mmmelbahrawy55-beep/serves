@@ -132,7 +132,7 @@ export default function InvoiceDetailPage() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500 text-lg">الفاتورة غير موجودة</p>
-        <Button variant="outline" className="mt-4" onClick={() => router.push("/sales")}>
+        <Button variant="outline" className="mt-4" onClick={() => router.push("/dashboard/sales")}>
           <ArrowRight className="h-4 w-4" />
           العودة للمبيعات
         </Button>
@@ -144,7 +144,7 @@ export default function InvoiceDetailPage() {
     <div className="space-y-6 print:space-y-4">
       <div className="flex items-center justify-between print:hidden">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" onClick={() => router.push("/sales")}>
+          <Button variant="ghost" size="sm" onClick={() => router.push("/dashboard/sales")}>
             <ArrowRight className="h-4 w-4" />
           </Button>
           <div>

@@ -93,7 +93,7 @@ export default function SalesPage() {
         </div>
         <Button
           variant="primary"
-          onClick={() => router.push("/sales/invoices/new")}
+          onClick={() => router.push("/dashboard/sales/invoices/new")}
         >
           <Plus className="h-4 w-4" />
           إنشاء فاتورة
@@ -136,7 +136,7 @@ export default function SalesPage() {
                   <TableRow
                     key={invoice.id}
                     className="cursor-pointer"
-                    onClick={() => router.push(`/sales/invoices/${invoice.id}`)}
+                    onClick={() => router.push(`/dashboard/sales/invoices/${invoice.id}`)}
                   >
                     <TableCell className="font-medium">
                       {invoice.number}
@@ -153,7 +153,7 @@ export default function SalesPage() {
                           onClick={(e: React.MouseEvent) => {
                             e.stopPropagation();
                             router.push(
-                              `/sales/invoices/${invoice.id}`
+                              `/dashboard/sales/invoices/${invoice.id}`
                             );
                           }}
                         >

@@ -187,7 +187,7 @@ export default function ClientsPage() {
                   <TableRow
                     key={client.id}
                     className="cursor-pointer"
-                    onClick={() => router.push(`/clients/${client.id}`)}
+                    onClick={() => router.push(`/dashboard/clients/${client.id}`)}
                   >
                     <TableCell className="font-medium">{client.name}</TableCell>
                     <TableCell>{client.email}</TableCell>

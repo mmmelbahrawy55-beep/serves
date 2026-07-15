@@ -46,12 +46,12 @@ export function Navbar() {
     {
       label: "الملف الشخصي",
       icon: <User className="h-4 w-4" />,
-      onClick: () => router.push("/settings"),
+      onClick: () => router.push("/dashboard/settings"),
     },
     {
       label: "الإعدادات",
       icon: <Settings className="h-4 w-4" />,
-      onClick: () => router.push("/settings"),
+      onClick: () => router.push("/dashboard/settings"),
     },
     {
       label: "تسجيل الخروج",

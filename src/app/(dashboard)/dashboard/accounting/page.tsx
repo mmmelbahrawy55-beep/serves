@@ -145,7 +145,7 @@ export default function AccountingPage() {
             <Button
               variant="outline"
               className="w-full"
-              onClick={() => router.push("/accounting/chart")}
+              onClick={() => router.push("/dashboard/accounting/chart")}
             >
               <BookOpen className="h-4 w-4" />
               عرض دليل الحسابات
@@ -162,7 +162,7 @@ export default function AccountingPage() {
             <Button
               variant="outline"
               className="w-full"
-              onClick={() => router.push("/accounting/journal")}
+              onClick={() => router.push("/dashboard/accounting/journal")}
             >
               <ScrollText className="h-4 w-4" />
               إدارة قيود اليومية

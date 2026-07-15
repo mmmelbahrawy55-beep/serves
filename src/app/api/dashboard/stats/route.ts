@@ -38,7 +38,7 @@ export async function GET() {
       prisma.invoice.count({
         where: { status: { in: ["SENT", "OVERDUE"] } },
       }),
-      prisma.$queryRaw`SELECT COUNT(*)::int FROM "Product" WHERE quantity <= "minStock"`,
+      prisma.product.findMany({ select: { quantity: true, minStock: true } }).then(products => products.filter(p => p.quantity <= p.minStock).length),
       prisma.project.count({
         where: { status: "IN_PROGRESS" },
       }),

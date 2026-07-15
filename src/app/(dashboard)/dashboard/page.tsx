@@ -62,7 +62,6 @@ export default function DashboardPage() {
         setRecentInvoices(data.recentInvoices || []);
         setRecentEmployees(data.recentEmployees || []);
       } catch {
-        console.error("Failed to fetch dashboard data");
       } finally {
         setIsLoading(false);
       }

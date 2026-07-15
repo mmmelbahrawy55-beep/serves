@@ -70,8 +70,7 @@ export async function GET(request: Request) {
     });
 
     return NextResponse.json(result, { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } });
-  } catch (error) {
-    console.error("Error fetching attendance:", error);
+  } catch {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب سجلات الحضور" },
       { status: 500 }
@@ -150,8 +149,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(record, { status: 200 });
-  } catch (error) {
-    console.error("Error in attendance POST:", error);
+  } catch {
     return NextResponse.json(
       { error: "حدث خطأ أثناء تسجيل الحضور" },
       { status: 500 }
@@ -214,8 +212,7 @@ export async function PATCH(request: Request) {
       { error: "نوع العملية غير صحيح" },
       { status: 400 }
     );
-  } catch (error) {
-    console.error("Error in attendance PATCH:", error);
+  } catch {
     return NextResponse.json(
       { error: "حدث خطأ أثناء تسجيل الانصراف" },
       { status: 500 }

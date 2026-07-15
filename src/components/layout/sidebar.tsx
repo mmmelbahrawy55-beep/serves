@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import type { FC } from "react";
 import {
   LayoutDashboard,
@@ -34,7 +34,7 @@ const menuItems: MenuItem[] = [
   { label: "الرئيسية", icon: LayoutDashboard, path: "/dashboard" },
   { label: "الموظفين", icon: Users, path: "/dashboard/employees" },
   { label: "الحضور", icon: CalendarCheck, path: "/dashboard/attendance" },
-  { label: "الإجازات", icon: CalendarRange, path: "/dashboard/employees", tab: "leave" },
+  { label: "الإجازات", icon: CalendarRange, path: "/dashboard/employees" },
   { label: "الرواتب", icon: DollarSign, path: "/dashboard/payroll" },
   { label: "العملاء", icon: Handshake, path: "/dashboard/clients" },
   { label: "المخازن", icon: Warehouse, path: "/dashboard/inventory" },
@@ -49,7 +49,8 @@ const menuItems: MenuItem[] = [
 export function Sidebar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { sidebarOpen, setSidebarOpen, currentUser } = useAppStore();
+  const router = useRouter();
+  const { sidebarOpen, setSidebarOpen, currentUser, setCurrentUser } = useAppStore();
 
   const isActive = (item: (typeof menuItems)[number]) => {
     if (item.path === "/") return pathname === "/";
@@ -128,6 +129,12 @@ export function Sidebar() {
                   </div>
                   <button
                     type="button"
+                    onClick={async () => {
+                      await fetch("/api/auth/logout", { method: "POST" });
+                      setCurrentUser(null);
+                      router.push("/login");
+                      router.refresh();
+                    }}
                     className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
                     title="تسجيل الخروج"
                   >

@@ -50,8 +50,7 @@ export async function PATCH(
     });
 
     return NextResponse.json(record, { status: 200 });
-  } catch (error) {
-    console.error("Error in check-out:", error);
+  } catch {
     return NextResponse.json(
       { error: "حدث خطأ أثناء تسجيل الانصراف" },
       { status: 500 }

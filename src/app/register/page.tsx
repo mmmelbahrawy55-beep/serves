@@ -71,8 +71,7 @@ export default function RegisterPage() {
 
       toast.success("تم إنشاء الحساب بنجاح، يمكنك تسجيل الدخول الآن");
       setTimeout(() => router.push("/login"), 1500);
-    } catch (e) {
-      console.error("Register error:", e);
+    } catch {
       toast.error("حدث خطأ في الاتصال بالخادم");
     } finally {
       setIsLoading(false);

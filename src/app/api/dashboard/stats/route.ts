@@ -99,8 +99,7 @@ export async function GET() {
       },
       { status: 200, headers: { "Cache-Control": "public, s-maxage=10, stale-while-revalidate=59" } }
     );
-  } catch (error) {
-    console.error("Error fetching dashboard stats:", error);
+  } catch {
     return NextResponse.json(
       { error: "حدث خطأ أثناء جلب الإحصائيات" },
       { status: 500 }

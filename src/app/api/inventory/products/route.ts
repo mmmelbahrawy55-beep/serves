@@ -91,12 +91,12 @@ export async function POST(request: Request) {
         name,
         sku,
         description,
-        categoryId,
-        unitPrice: unitPrice ? parseFloat(unitPrice) : 0,
-        costPrice: costPrice ? parseFloat(costPrice) : 0,
-        quantity: quantity ? parseInt(quantity) : 0,
-        minStock: minStock ? parseInt(minStock) : 0,
-        supplierId,
+        categoryId: categoryId || undefined,
+        unitPrice: parseFloat(unitPrice) || 0,
+        costPrice: parseFloat(costPrice) || 0,
+        quantity: parseInt(quantity) || 0,
+        minStock: parseInt(minStock) || 0,
+        supplierId: supplierId || undefined,
       },
       include: {
         category: true,
@@ -143,12 +143,12 @@ export async function PATCH(request: Request) {
     if (name !== undefined) updateData.name = name;
     if (sku !== undefined) updateData.sku = sku;
     if (description !== undefined) updateData.description = description;
-    if (categoryId !== undefined) updateData.categoryId = categoryId;
-    if (unitPrice !== undefined) updateData.unitPrice = parseFloat(unitPrice);
-    if (costPrice !== undefined) updateData.costPrice = parseFloat(costPrice);
-    if (quantity !== undefined) updateData.quantity = parseInt(quantity);
-    if (minStock !== undefined) updateData.minStock = parseInt(minStock);
-    if (supplierId !== undefined) updateData.supplierId = supplierId;
+    if (categoryId !== undefined) updateData.categoryId = categoryId || null;
+    if (unitPrice !== undefined) updateData.unitPrice = parseFloat(unitPrice) || 0;
+    if (costPrice !== undefined) updateData.costPrice = parseFloat(costPrice) || 0;
+    if (quantity !== undefined) updateData.quantity = parseInt(quantity) || 0;
+    if (minStock !== undefined) updateData.minStock = parseInt(minStock) || 0;
+    if (supplierId !== undefined) updateData.supplierId = supplierId || null;
 
     const product = await prisma.product.update({
       where: { id },

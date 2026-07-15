@@ -52,6 +52,10 @@ export async function POST(request: Request) {
       );
     }
 
+    if (!["ASSET", "LIABILITY", "EQUITY", "INCOME", "EXPENSE"].includes(type)) {
+      return NextResponse.json({ error: "نوع الحساب غير صالح" }, { status: 400 });
+    }
+
     const existing = await prisma.account.findUnique({
       where: { code },
     });
@@ -68,8 +72,8 @@ export async function POST(request: Request) {
         code,
         name,
         type,
-        parentId,
-        balance: balance ? parseFloat(balance) : 0,
+        parentId: parentId || null,
+        balance: balance ? (parseFloat(balance) || 0) : 0,
       },
     });
 

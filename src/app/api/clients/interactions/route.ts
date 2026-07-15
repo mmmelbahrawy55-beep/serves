@@ -16,6 +16,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "معرف العميل والوصف مطلوبان" }, { status: 400 });
     }
 
+    if (type && !["CALL", "EMAIL", "MEETING", "NOTE"].includes(type)) {
+      return NextResponse.json({ error: "نوع التفاعل غير صالح" }, { status: 400 });
+    }
+
+    const client = await prisma.client.findUnique({ where: { id: clientId } });
+    if (!client) {
+      return NextResponse.json({ error: "العميل غير موجود" }, { status: 404 });
+    }
+
     const interaction = await prisma.interaction.create({
       data: {
         clientId,

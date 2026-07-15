@@ -72,6 +72,15 @@ export async function POST(request: Request) {
       );
     }
 
+    if (!["SICK", "ANNUAL", "EMERGENCY", "PERSONAL"].includes(type)) {
+      return NextResponse.json({ error: "نوع إجازة غير صالح" }, { status: 400 });
+    }
+
+    const employee = await prisma.user.findUnique({ where: { id: employeeId } });
+    if (!employee) {
+      return NextResponse.json({ error: "الموظف غير موجود" }, { status: 404 });
+    }
+
     const leave = await prisma.leave.create({
       data: {
         employeeId,

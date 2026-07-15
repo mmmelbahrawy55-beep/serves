@@ -72,9 +72,9 @@ export async function POST(request: Request) {
         description,
         startDate: new Date(startDate),
         endDate: endDate ? new Date(endDate) : null,
-        budget: budget ? parseFloat(budget) : 0,
-        clientId,
-        managerId,
+        budget: budget ? (parseFloat(budget) || 0) : 0,
+        clientId: clientId || null,
+        managerId: managerId || null,
       },
       include: {
         client: {
@@ -133,9 +133,9 @@ export async function PATCH(request: Request) {
     if (startDate !== undefined) updateData.startDate = new Date(startDate);
     if (endDate !== undefined) updateData.endDate = endDate ? new Date(endDate) : null;
     if (status !== undefined) updateData.status = status;
-    if (budget !== undefined) updateData.budget = parseFloat(budget);
-    if (clientId !== undefined) updateData.clientId = clientId;
-    if (managerId !== undefined) updateData.managerId = managerId;
+    if (budget !== undefined) updateData.budget = parseFloat(budget) || 0;
+    if (clientId !== undefined) updateData.clientId = clientId || null;
+    if (managerId !== undefined) updateData.managerId = managerId || null;
 
     const project = await prisma.project.update({
       where: { id },

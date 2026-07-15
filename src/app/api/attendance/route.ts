@@ -100,6 +100,11 @@ export async function POST(request: Request) {
       );
     }
 
+    const employee = await prisma.user.findUnique({ where: { id: employeeId } });
+    if (!employee) {
+      return NextResponse.json({ error: "الموظف غير موجود" }, { status: 404 });
+    }
+
     const today = new Date();
     const startToday = startOfDay(today);
     const endToday = endOfDay(today);

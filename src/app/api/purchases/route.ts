@@ -89,11 +89,11 @@ export async function POST(request: Request) {
     }
 
     const purchaseItems = items.map((item: any) => ({
-      productId: item.productId,
+      productId: item.productId || null,
       description: item.description,
-      quantity: parseInt(item.quantity),
-      unitPrice: parseFloat(item.unitPrice),
-      total: parseInt(item.quantity) * parseFloat(item.unitPrice),
+      quantity: parseInt(item.quantity) || 1,
+      unitPrice: parseFloat(item.unitPrice) || 0,
+      total: (parseInt(item.quantity) || 1) * (parseFloat(item.unitPrice) || 0),
     }));
 
     const totalAmount = purchaseItems.reduce((sum: number, item: any) => sum + item.total, 0);
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
 
       return tx.purchase.create({
         data: {
-          supplierId,
+          supplierId: supplierId || null,
           date: date ? new Date(date) : new Date(),
           totalAmount,
           notes,

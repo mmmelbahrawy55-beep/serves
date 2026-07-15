@@ -54,6 +54,10 @@ export async function PATCH(
       return NextResponse.json({ error: "الحالة مطلوبة" }, { status: 400 });
     }
 
+    if (!["DRAFT", "SENT", "PAID", "CANCELLED", "OVERDUE"].includes(status)) {
+      return NextResponse.json({ error: "حالة غير صالحة" }, { status: 400 });
+    }
+
     const invoice = await prisma.invoice.update({
       where: { id },
       data: { status },

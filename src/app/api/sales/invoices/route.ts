@@ -96,11 +96,11 @@ export async function POST(request: Request) {
     }
 
     const invoiceItems = items.map((item: any) => ({
-      productId: item.productId,
-      description: item.description,
-      quantity: parseInt(item.quantity),
-      unitPrice: parseFloat(item.unitPrice),
-      total: parseInt(item.quantity) * parseFloat(item.unitPrice),
+      productId: item.productId || null,
+      description: item.description || item.name || "",
+      quantity: parseInt(item.quantity) || 1,
+      unitPrice: parseFloat(item.unitPrice) || 0,
+      total: (parseInt(item.quantity) || 1) * (parseFloat(item.unitPrice) || 0),
     }));
 
     const subtotal = invoiceItems.reduce((sum: number, item: any) => sum + item.total, 0);
@@ -134,7 +134,7 @@ export async function POST(request: Request) {
       return tx.invoice.create({
         data: {
           invoiceNumber,
-          clientId,
+          clientId: clientId || null,
           date: date ? new Date(date) : new Date(),
           dueDate: dueDate ? new Date(dueDate) : null,
           subtotal,

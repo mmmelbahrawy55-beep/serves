@@ -86,6 +86,17 @@ export async function POST(request: Request) {
       );
     }
 
+    const parsedDate = date ? new Date(date) : new Date();
+    if (isNaN(parsedDate.getTime())) {
+      return NextResponse.json({ error: "تاريخ غير صالح" }, { status: 400 });
+    }
+
+    for (const line of lines) {
+      if (!line.accountId) {
+        return NextResponse.json({ error: "معرف الحساب مطلوب لكل سطر" }, { status: 400 });
+      }
+    }
+
     const journalLines = lines.map((line: any) => ({
       accountId: line.accountId,
       debit: parseFloat(line.debit) || 0,
@@ -114,7 +125,7 @@ export async function POST(request: Request) {
 
     const entry = await prisma.journalEntry.create({
       data: {
-        date: date ? new Date(date) : new Date(),
+        date: parsedDate,
         description,
         reference,
         createdById: user.id,

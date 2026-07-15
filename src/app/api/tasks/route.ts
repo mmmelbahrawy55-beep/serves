@@ -84,10 +84,10 @@ export async function POST(request: Request) {
 
     const task = await prisma.task.create({
       data: {
-        projectId,
+        projectId: projectId || null,
         name,
         description,
-        assignedTo,
+        assignedTo: assignedTo || null,
         priority: priority || "MEDIUM",
         dueDate: dueDate ? new Date(dueDate) : null,
       },
@@ -143,9 +143,9 @@ export async function PATCH(request: Request) {
     if (description !== undefined) updateData.description = description;
     if (status !== undefined) updateData.status = status;
     if (priority !== undefined) updateData.priority = priority;
-    if (assignedTo !== undefined) updateData.assignedTo = assignedTo;
+    if (assignedTo !== undefined) updateData.assignedTo = assignedTo || null;
     if (dueDate !== undefined) updateData.dueDate = dueDate ? new Date(dueDate) : null;
-    if (projectId !== undefined) updateData.projectId = projectId;
+    if (projectId !== undefined) updateData.projectId = projectId || null;
 
     const task = await prisma.task.update({
       where: { id },

@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     const client = await prisma.client.create({
       data: {
         name,
-        email,
+        email: email || null,
         phone,
         company,
         type: type || "LEAD",
@@ -129,8 +129,8 @@ export async function PATCH(request: Request) {
     if (email !== undefined) updateData.email = email;
     if (phone !== undefined) updateData.phone = phone;
     if (company !== undefined) updateData.company = company;
-    if (type !== undefined) updateData.type = type;
-    if (status !== undefined) updateData.status = status;
+    if (type !== undefined && type !== "") updateData.type = type;
+    if (status !== undefined && status !== "") updateData.status = status;
     if (notes !== undefined) updateData.notes = notes;
 
     const client = await prisma.client.update({

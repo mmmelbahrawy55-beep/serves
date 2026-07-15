@@ -94,7 +94,7 @@ export async function POST(request: Request) {
         role: role || "EMPLOYEE",
         department,
         position,
-        salary: salary ? parseFloat(salary) : 0,
+        salary: salary ? (parseFloat(salary) || 0) : 0,
         phone,
       },
       select: {
@@ -142,11 +142,11 @@ export async function PATCH(request: Request) {
     const updateData: any = {};
     if (name !== undefined) updateData.name = name;
     if (email !== undefined) updateData.email = email;
-    if (role !== undefined) updateData.role = role;
+    if (role !== undefined && role !== "") updateData.role = role;
     if (department !== undefined) updateData.department = department;
     if (position !== undefined) updateData.position = position;
-    if (salary !== undefined) updateData.salary = parseFloat(salary);
-    if (status !== undefined) updateData.status = status;
+    if (salary !== undefined) updateData.salary = parseFloat(salary) || 0;
+    if (status !== undefined && status !== "") updateData.status = status;
     if (phone !== undefined) updateData.phone = phone;
 
     const updatedEmployee = await prisma.user.update({

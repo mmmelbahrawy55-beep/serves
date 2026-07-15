@@ -176,11 +176,11 @@ export async function PATCH(request: Request) {
     const updateData: any = {};
 
     if (allowances !== undefined) {
-      updateData.allowances = parseFloat(allowances);
+      updateData.allowances = parseFloat(allowances) || 0;
     }
 
     if (deductions !== undefined) {
-      updateData.deductions = parseFloat(deductions);
+      updateData.deductions = parseFloat(deductions) || 0;
     }
 
     if (status === "PAID") {
@@ -190,8 +190,8 @@ export async function PATCH(request: Request) {
 
     if (allowances !== undefined || deductions !== undefined) {
       const basic = payroll.basicSalary;
-      const newAllowances = allowances !== undefined ? parseFloat(allowances) : payroll.allowances;
-      const newDeductions = deductions !== undefined ? parseFloat(deductions) : payroll.deductions;
+      const newAllowances = allowances !== undefined ? (parseFloat(allowances) || 0) : payroll.allowances;
+      const newDeductions = deductions !== undefined ? (parseFloat(deductions) || 0) : payroll.deductions;
       updateData.netSalary = basic + newAllowances - newDeductions;
     }
 

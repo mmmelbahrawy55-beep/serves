@@ -15,13 +15,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "الشهر والسنة مطلوبان" }, { status: 400 });
     }
 
+    const monthNum = parseInt(month);
+    const yearNum = parseInt(year);
+    if (isNaN(monthNum) || isNaN(yearNum) || monthNum < 1 || monthNum > 12 || yearNum < 2000 || yearNum > 2100) {
+      return NextResponse.json({ error: "شهر أو سنة غير صالح" }, { status: 400 });
+    }
+
     const employees = await prisma.user.findMany({
       where: { status: "ACTIVE" },
       select: { id: true, salary: true, name: true },
     });
 
     const existing = await prisma.payroll.findMany({
-      where: { month, year },
+      where: { month: monthNum, year: yearNum },
       select: { employeeId: true },
     });
     const existingIds = new Set(existing.map((e) => e.employeeId));
@@ -35,8 +41,8 @@ export async function POST(request: Request) {
         const netSalary = basicSalary + allowances - deductions;
         return {
           employeeId: employee.id,
-          month,
-          year,
+          month: monthNum,
+          year: yearNum,
           basicSalary,
           allowances,
           deductions,

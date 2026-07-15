@@ -52,3 +52,6 @@ yarn-error.log*
 .env.production
 
 .vercel
+
+devserver.log
+server.log

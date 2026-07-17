@@ -11,22 +11,33 @@ const breadcrumbMap: Record<string, string> = {
   "/dashboard": "الرئيسية",
   "/dashboard/employees": "الموظفين",
   "/dashboard/attendance": "الحضور",
+  "/dashboard/leaves": "الإجازات",
   "/dashboard/payroll": "الرواتب",
   "/dashboard/clients": "العملاء",
   "/dashboard/inventory": "المخازن",
   "/dashboard/sales": "المبيعات",
+  "/dashboard/sales/invoices/new": "فاتورة جديدة",
   "/dashboard/accounting": "الحسابات",
+  "/dashboard/accounting/chart": "دليل الحسابات",
+  "/dashboard/accounting/journal": "قيود اليومية",
   "/dashboard/projects": "المشاريع",
   "/dashboard/reports": "التقارير",
   "/dashboard/settings": "الإعدادات",
 };
+
+function getPageTitle(pathname: string): string {
+  const direct = breadcrumbMap[pathname];
+  if (direct) return direct;
+  const parent = pathname.substring(0, pathname.lastIndexOf("/"));
+  return breadcrumbMap[parent] || "الرئيسية";
+}
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const { toggleSidebar, currentUser, setCurrentUser } = useAppStore();
 
-  const pageTitle = breadcrumbMap[pathname] || "الرئيسية";
+  const pageTitle = getPageTitle(pathname);
 
   const handleLogout = async () => {
     try {

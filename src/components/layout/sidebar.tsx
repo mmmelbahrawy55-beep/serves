@@ -34,7 +34,7 @@ const menuItems: MenuItem[] = [
   { label: "الرئيسية", icon: LayoutDashboard, path: "/dashboard" },
   { label: "الموظفين", icon: Users, path: "/dashboard/employees" },
   { label: "الحضور", icon: CalendarCheck, path: "/dashboard/attendance" },
-  { label: "الإجازات", icon: CalendarRange, path: "/dashboard/employees" },
+  { label: "الإجازات", icon: CalendarRange, path: "/dashboard/leaves" },
   { label: "الرواتب", icon: DollarSign, path: "/dashboard/payroll" },
   { label: "العملاء", icon: Handshake, path: "/dashboard/clients" },
   { label: "المخازن", icon: Warehouse, path: "/dashboard/inventory" },

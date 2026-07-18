@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Building2, Loader2 } from "lucide-react";
+import { Building2, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -79,20 +79,32 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950 flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-dot-gold opacity-30" />
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
+
+      <div className="w-full max-w-md relative z-10">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/30">
-            <Building2 className="w-8 h-8 text-white" />
+          <div className="relative inline-block">
+            <div className="absolute inset-0 bg-gold-500/20 blur-2xl rounded-full" />
+            <div className="relative w-20 h-20 bg-gradient-to-br from-gold-500 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-gold-500/30 animate-float">
+              <Building2 className="w-10 h-10 text-dark-900" />
+            </div>
           </div>
-          <h1 className="text-2xl font-bold text-white">نظام إدارة الشركات</h1>
-          <p className="text-blue-200/80 mt-1">إنشاء حساب جديد</p>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-gold-400 to-yellow-500 bg-clip-text text-transparent">
+            نظام إدارة الشركات
+          </h1>
+          <p className="text-gray-400 mt-2">إنشاء حساب جديد</p>
         </div>
 
-        <Card className="border-0 shadow-2xl bg-white/95 backdrop-blur-sm">
+        <Card className="border border-white/5 shadow-2xl shadow-gold-500/5 bg-dark-800/50 backdrop-blur-xl">
           <CardHeader>
-            <CardTitle className="text-center text-gray-900">إنشاء حساب</CardTitle>
-            <CardDescription className="text-center">
+            <CardTitle className="text-center text-white text-xl">
+              <Sparkles className="h-5 w-5 text-gold-500 inline-block ml-2" />
+              إنشاء حساب
+            </CardTitle>
+            <CardDescription className="text-center text-gray-400">
               أدخل بياناتك لإنشاء حساب جديد
             </CardDescription>
           </CardHeader>
@@ -147,7 +159,7 @@ export default function RegisterPage() {
               <span className="text-gray-500">لديك حساب بالفعل؟ </span>
               <Link
                 href="/login"
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="text-gold-400 hover:text-gold-300 font-medium transition-colors"
               >
                 تسجيل الدخول
               </Link>

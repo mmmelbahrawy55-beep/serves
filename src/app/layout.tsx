@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/components/theme-provider";
 import { ClientInit } from "@/components/ClientInit";
 import { getCurrentUser } from "@/lib/auth";
 
@@ -17,15 +18,27 @@ export default async function RootLayout({
   const user = await getCurrentUser();
 
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className="min-h-screen">
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            className: "!font-sans !text-sm !rtl",
-          }}
-        />
-        <ClientInit user={user}>{children}</ClientInit>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          storageKey="theme"
+        >
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              className: "!font-sans !text-sm !rtl",
+              style: {
+                background: "var(--bg-card)",
+                color: "var(--text-primary)",
+                border: "1px solid var(--border-primary)",
+              },
+            }}
+          />
+          <ClientInit user={user}>{children}</ClientInit>
+        </ThemeProvider>
       </body>
     </html>
   );

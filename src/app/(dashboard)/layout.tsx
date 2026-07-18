@@ -14,8 +14,6 @@ export default async function ProtectedDashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
-      <DashboardLayout>{children}</DashboardLayout>
-    </div>
+    <DashboardLayout>{children}</DashboardLayout>
   );
 }

@@ -10,11 +10,11 @@ type DashboardLayoutProps = {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20" dir="rtl">
+    <div className="flex min-h-screen bg-secondary" dir="rtl">
       <Sidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <Navbar />
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 bg-dot-gold">
           {children}
         </main>
       </div>

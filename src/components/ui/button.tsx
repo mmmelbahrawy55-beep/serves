@@ -1,59 +1,53 @@
-import * as React from "react";
 import { cn } from "@/lib/utils";
 
-const variants = {
-  default: "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300",
-  primary: "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 shadow-sm hover:shadow-md focus-visible:ring-blue-500",
-  destructive: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
-  outline: "border border-gray-200 bg-transparent hover:bg-gray-50 text-gray-900",
-  ghost: "bg-transparent hover:bg-gray-100 text-gray-700",
-  secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
+const variantStyles: Record<string, string> = {
+  default:
+    "bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20 border border-gray-200 dark:border-white/10",
+  primary:
+    "btn-gold text-dark-900 font-bold shadow-lg shadow-gold-500/20",
+  destructive:
+    "bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20 border border-red-500/20",
+  outline:
+    "border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gold-500/30",
+  ghost:
+    "text-gray-500 dark:text-gray-400 hover:bg-gold-500/5 hover:text-gold-600 dark:hover:text-gold-400",
+  secondary:
+    "bg-dark-800 text-white hover:bg-dark-700 border border-white/10",
 };
 
-const sizes = {
-  default: "h-10 px-4 py-2",
-  sm: "h-9 px-3 text-sm",
-  lg: "h-12 px-6 text-lg",
+const sizeStyles: Record<string, string> = {
+  default: "h-10 px-5 py-2 text-sm",
+  sm: "h-8 px-3 text-xs",
+  lg: "h-12 px-8 text-base",
   icon: "h-10 w-10",
 };
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: keyof typeof variants;
-  size?: keyof typeof sizes;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: keyof typeof variantStyles;
+  size?: keyof typeof sizeStyles;
   asChild?: boolean;
-};
+}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", asChild = false, children, ...props }, ref) => {
-    if (asChild && React.isValidElement(children)) {
-      return React.cloneElement(children as React.ReactElement<any>, {
-        className: cn(
-          "inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-          variants[variant],
-          sizes[size],
-          className
-        ),
-        ref,
-        ...props,
-      });
-    }
-    return (
-      <button
-        ref={ref}
-        className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-          variants[variant],
-          sizes[size],
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
-);
-Button.displayName = "Button";
-
-export { Button };
-export type { ButtonProps };
+export function Button({
+  className,
+  variant = "default",
+  size = "default",
+  disabled,
+  children,
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gold-500/30 focus:ring-offset-1 dark:focus:ring-offset-dark-900 disabled:opacity-50 disabled:pointer-events-none",
+        variantStyles[variant],
+        sizeStyles[size],
+        className
+      )}
+      disabled={disabled}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}

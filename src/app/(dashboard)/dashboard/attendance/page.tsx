@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Loader2, Clock, LogOut, Filter } from "lucide-react";
+import { Loader2, Clock, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -20,6 +20,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { LeaveCalendar } from "@/components/calendar/leave-calendar";
 import { formatDateTime } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -195,6 +196,8 @@ export default function AttendancePage() {
           )}
         </CardContent>
       </Card>
+
+      <LeaveCalendar onDateClick={(date) => setDate(date.toISOString().split("T")[0])} />
     </div>
   );
 }

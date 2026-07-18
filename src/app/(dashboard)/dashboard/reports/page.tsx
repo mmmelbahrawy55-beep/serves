@@ -6,10 +6,13 @@ import {
   Package,
   DollarSign,
   Download,
+  FileText,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { generateReportPDF } from "@/lib/generate-pdf";
+import { toast } from "sonner";
 
 const monthlySales = [
   { month: "يناير", value: 45000 },
@@ -90,6 +93,21 @@ export default function ReportsPage() {
 
   const handleGenerate = async (type: string) => {
     setSelectedReport(type);
+  };
+
+  const handleDownloadPDF = (type: string) => {
+    const titles: Record<string, string> = {
+      sales: "تقرير المبيعات",
+      employees: "تقرير الموظفين",
+      inventory: "تقرير المخازن",
+      financial: "التقرير المالي",
+    };
+    try {
+      generateReportPDF(type, titles[type] || type);
+      toast.success("تم تحميل التقرير");
+    } catch {
+      toast.error("حدث خطأ أثناء إنشاء التقرير");
+    }
   };
 
   const SimpleBarChart = ({ data }: { data: typeof monthlySales }) => {
@@ -199,14 +217,24 @@ export default function ReportsPage() {
                   <CardDescription>{card.description}</CardDescription>
                 </div>
               </div>
-              <Button
-                variant="primary"
-                className="w-full"
-                onClick={() => handleGenerate(card.type)}
-              >
-                <Download className="h-4 w-4" />
-                عرض التقرير
-              </Button>
+              <div className="flex gap-2">
+                <Button
+                  variant="primary"
+                  className="flex-1"
+                  onClick={() => handleGenerate(card.type)}
+                >
+                  <Download className="h-4 w-4" />
+                  عرض
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex-shrink-0"
+                  onClick={() => handleDownloadPDF(card.type)}
+                  title="تحميل PDF"
+                >
+                  <FileText className="h-4 w-4" />
+                </Button>
+              </div>
             </CardContent>
           </Card>
         ))}

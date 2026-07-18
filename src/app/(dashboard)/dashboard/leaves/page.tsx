@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Plus, Loader2, Check, X, Search } from "lucide-react";
+import { Plus, Loader2, Check, X, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -10,8 +10,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
 import {
   Table,
@@ -24,6 +22,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Modal } from "@/components/ui/modal";
 import { formatDate } from "@/lib/utils";
+import { useAppStore } from "@/store/useAppStore";
 import { toast } from "sonner";
 
 type Employee = { id: string; name: string; email: string; department: string | null };
@@ -62,6 +61,7 @@ const emptyForm = {
 
 export default function LeavesPage() {
   const router = useRouter();
+  const currentUser = useAppStore((s) => s.currentUser);
   const [leaves, setLeaves] = useState<Leave[]>([]);
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -69,6 +69,8 @@ export default function LeavesPage() {
   const [formData, setFormData] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
   const [filter, setFilter] = useState("");
+
+  const isAdmin = currentUser?.role === "ADMIN";
 
   const fetchLeaves = async () => {
     try {
@@ -212,7 +214,11 @@ export default function LeavesPage() {
                       (1000 * 60 * 60 * 24)
                   ) + 1;
                   return (
-                    <TableRow key={leave.id}>
+                    <TableRow
+                      key={leave.id}
+                      className="cursor-pointer hover:bg-gray-50"
+                      onClick={() => router.push(`/dashboard/leaves/${leave.id}`)}
+                    >
                       <TableCell className="font-medium">{leave.employee.name}</TableCell>
                       <TableCell>{leave.employee.department || "—"}</TableCell>
                       <TableCell>
@@ -225,19 +231,22 @@ export default function LeavesPage() {
                       <TableCell>{statusBadge(leave.status)}</TableCell>
                       <TableCell>
                         <div className="flex items-center justify-center gap-1">
-                          {leave.status === "PENDING" && (
+                          <Button variant="ghost" size="sm" onClick={(e) => { e.stopPropagation(); router.push(`/dashboard/leaves/${leave.id}`); }}>
+                            <Eye className="h-4 w-4 text-blue-600" />
+                          </Button>
+                          {leave.status === "PENDING" && isAdmin && (
                             <>
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => handleStatusChange(leave.id, "APPROVED")}
+                                onClick={(e) => { e.stopPropagation(); handleStatusChange(leave.id, "APPROVED"); }}
                               >
                                 <Check className="h-4 w-4 text-green-600" />
                               </Button>
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => handleStatusChange(leave.id, "REJECTED")}
+                                onClick={(e) => { e.stopPropagation(); handleStatusChange(leave.id, "REJECTED"); }}
                               >
                                 <X className="h-4 w-4 text-red-600" />
                               </Button>

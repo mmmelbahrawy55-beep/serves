@@ -1,8 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const user = await getCurrentUser();
 
@@ -151,6 +151,16 @@ export async function PATCH(request: Request) {
             email: true,
           },
         },
+      },
+    });
+
+    const statusLabel = status === "APPROVED" ? "معتمدة" : "مرفوضة";
+    await prisma.notification.create({
+      data: {
+        userId: leave.employee.id,
+        title: "تحديث حالة الإجازة",
+        message: `تم تغيير حالة إجازتك إلى "${statusLabel}"`,
+        type: status === "APPROVED" ? "success" : "error",
       },
     });
 

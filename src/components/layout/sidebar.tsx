@@ -30,12 +30,14 @@ type MenuItem = {
   tab?: string;
 };
 
-const menuItems: MenuItem[] = [
+type MenuItemRole = "all" | "admin" | "admin_manager";
+
+const menuItems: (MenuItem & { role?: MenuItemRole })[] = [
   { label: "الرئيسية", icon: LayoutDashboard, path: "/dashboard" },
-  { label: "الموظفين", icon: Users, path: "/dashboard/employees" },
+  { label: "الموظفين", icon: Users, path: "/dashboard/employees", role: "admin_manager" },
   { label: "الحضور", icon: CalendarCheck, path: "/dashboard/attendance" },
   { label: "الإجازات", icon: CalendarRange, path: "/dashboard/leaves" },
-  { label: "الرواتب", icon: DollarSign, path: "/dashboard/payroll" },
+  { label: "الرواتب", icon: DollarSign, path: "/dashboard/payroll", role: "admin_manager" },
   { label: "العملاء", icon: Handshake, path: "/dashboard/clients" },
   { label: "المخازن", icon: Warehouse, path: "/dashboard/inventory" },
   { label: "المشتريات", icon: ShoppingCart, path: "/dashboard/inventory", tab: "purchases" },
@@ -43,7 +45,7 @@ const menuItems: MenuItem[] = [
   { label: "الحسابات", icon: BookOpen, path: "/dashboard/accounting" },
   { label: "المشاريع", icon: Briefcase, path: "/dashboard/projects" },
   { label: "التقارير", icon: BarChart3, path: "/dashboard/reports" },
-  { label: "الإعدادات", icon: Settings, path: "/dashboard/settings" },
+  { label: "الإعدادات", icon: Settings, path: "/dashboard/settings", role: "admin" },
 ];
 
 export function Sidebar() {
@@ -51,6 +53,15 @@ export function Sidebar() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { sidebarOpen, setSidebarOpen, currentUser, setCurrentUser } = useAppStore();
+
+  const userRole = currentUser?.role;
+
+  const visibleItems = menuItems.filter((item) => {
+    if (!item.role) return true;
+    if (item.role === "admin") return userRole === "ADMIN";
+    if (item.role === "admin_manager") return userRole === "ADMIN" || userRole === "MANAGER";
+    return true;
+  });
 
   const isActive = (item: (typeof menuItems)[number]) => {
     if (item.path === "/") return pathname === "/";
@@ -87,7 +98,7 @@ export function Sidebar() {
           </div>
 
           <nav className="flex-1 space-y-1 overflow-y-auto py-4">
-            {menuItems.map((item) => {
+            {visibleItems.map((item) => {
               const active = isActive(item);
               return (
                 <Link
@@ -126,6 +137,9 @@ export function Sidebar() {
                   <div className="flex-1 overflow-hidden">
                     <p className="truncate text-sm font-medium">{currentUser?.name || "مستخدم"}</p>
                     <p className="truncate text-xs text-gray-400">{currentUser?.email || ""}</p>
+                    <p className="truncate text-[10px] text-blue-400 mt-0.5">
+                      {currentUser?.role === "ADMIN" ? "مدير النظام" : currentUser?.role === "MANAGER" ? "مدير" : "موظف"}
+                    </p>
                   </div>
                   <button
                     type="button"

@@ -31,6 +31,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Modal } from "@/components/ui/modal";
 import { formatCurrency } from "@/lib/utils";
+import { useAppStore } from "@/store/useAppStore";
 import { toast } from "sonner";
 
 type Employee = {
@@ -65,6 +66,8 @@ const emptyEmployee: EmployeeForm = {
 
 export default function EmployeesPage() {
   const router = useRouter();
+  const currentUser = useAppStore((s) => s.currentUser);
+  const isAdmin = currentUser?.role === "ADMIN";
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -172,10 +175,12 @@ export default function EmployeesPage() {
           <h1 className="text-2xl font-bold text-gray-900">الموظفين</h1>
           <p className="text-gray-500 mt-1">إدارة بيانات الموظفين</p>
         </div>
-        <Button variant="primary" onClick={openAddModal}>
-          <Plus className="h-4 w-4" />
-          إضافة موظف
-        </Button>
+        {isAdmin && (
+          <Button variant="primary" onClick={openAddModal}>
+            <Plus className="h-4 w-4" />
+            إضافة موظف
+          </Button>
+        )}
       </div>
 
       <Card className="border-0 shadow-sm">
@@ -230,20 +235,24 @@ export default function EmployeesPage() {
                         >
                           <Eye className="h-4 w-4" />
                         </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => openEditModal(emp)}
-                        >
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDelete(emp.id)}
-                        >
-                          <Trash2 className="h-4 w-4 text-red-500" />
-                        </Button>
+                        {isAdmin && (
+                          <>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => openEditModal(emp)}
+                            >
+                              <Pencil className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDelete(emp.id)}
+                            >
+                              <Trash2 className="h-4 w-4 text-red-500" />
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </TableCell>
                   </TableRow>

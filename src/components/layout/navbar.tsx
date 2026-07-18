@@ -1,10 +1,10 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, Bell, ChevronDown, User, Settings, LogOut } from "lucide-react";
+import { Menu, ChevronDown, User, Settings, LogOut } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
-import { Badge } from "@/components/ui/badge";
 import { Dropdown } from "@/components/ui/dropdown";
+import { NotificationDropdown } from "@/components/notifications/notification-dropdown";
 import { toast } from "sonner";
 
 const breadcrumbMap: Record<string, string> = {
@@ -89,15 +89,7 @@ export function Navbar() {
       <div className="flex flex-1" />
 
       <div className="flex items-center gap-2">
-        <button
-          type="button"
-          className="relative flex h-10 w-10 items-center justify-center rounded-xl text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-        >
-          <Bell className="h-5 w-5" />
-          <Badge variant="danger" className="absolute -top-0.5 -right-0.5 flex h-5 min-w-[20px] items-center justify-center px-1 text-[10px]">
-            3
-          </Badge>
-        </button>
+        <NotificationDropdown />
 
         <Dropdown
           align="end"

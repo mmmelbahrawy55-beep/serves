@@ -20,7 +20,6 @@ const stats = [
   { end: 20, suffix: "+", label: "وحدة رئيسية" },
   { end: 100, suffix: "%", label: "واجهة عربية" },
   { end: 24, suffix: "/7", label: "دعم فني" },
-  { end: 0, suffix: "ج.م", label: "مجاني للتجربة", display: "مجاني" },
 ];
 
 /* ─── Animated Counter ─── */
@@ -326,7 +325,7 @@ export default function LandingPage() {
           <Reveal delay={0.2}>
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link href="/register" className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 px-9 py-4 text-sm font-bold text-[#08080f] shadow-xl shadow-amber-500/20 transition-all duration-300 hover:from-amber-400 hover:to-amber-500 hover:shadow-amber-500/30 hover:-translate-y-0.5 sm:w-auto">
-                إنشاء حساب مجاني
+                إنشاء حساب
               </Link>
               <Link href="/login" className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/[0.06] px-9 py-4 text-sm font-semibold text-[#9a948a] transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.03] hover:text-white sm:w-auto">
                 تسجيل الدخول
@@ -335,7 +334,7 @@ export default function LandingPage() {
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-4 text-xs text-[#6b6560] sm:gap-6 sm:text-sm">
-              {["بدون بطاقة", "إلغاء مجاني", "دعم فني"].map((text) => (
+              {["بدون بطاقة", "دعم فني", "تحديثات"].map((text) => (
                 <span key={text} className="flex items-center gap-1.5">
                   <CheckCircle2 className="h-3.5 w-3.5 text-amber-500/50" />
                   {text}

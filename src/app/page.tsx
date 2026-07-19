@@ -16,7 +16,7 @@ const features = [
   { icon: Clock, label: "الحضور", desc: "تسجيل الحضور والانصراف مع تقارير يومية" },
 ];
 
-const stats = [
+const stats: { end: number; suffix: string; label: string; display?: string }[] = [
   { end: 20, suffix: "+", label: "وحدة رئيسية" },
   { end: 100, suffix: "%", label: "واجهة عربية" },
   { end: 24, suffix: "/7", label: "دعم فني" },

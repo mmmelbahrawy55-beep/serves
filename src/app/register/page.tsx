@@ -50,17 +50,17 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-dark-950 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#08080f] p-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 shadow-xl shadow-blue-600/20">
-            <Building2 className="h-7 w-7 text-white" />
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 shadow-xl shadow-amber-500/20">
+            <Building2 className="h-7 w-7 text-[#08080f]" />
           </div>
-          <h1 className="text-2xl font-bold text-white">إنشاء حساب</h1>
-          <p className="mt-1 text-sm text-gray-500">أدخل بياناتك لإنشاء حساب جديد</p>
+          <h1 className="text-2xl font-bold text-[#e8e4dd]">إنشاء حساب</h1>
+          <p className="mt-1 text-sm text-[#9a948a]">أدخل بياناتك لإنشاء حساب جديد</p>
         </div>
 
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+        <div className="rounded-2xl border border-white/[0.04] bg-white/[0.015] p-6">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <Input label="الاسم" placeholder="الاسم الكامل" error={errors.name?.message} {...register("name")} />
             <Input label="البريد الإلكتروني" type="email" placeholder="example@company.com" error={errors.email?.message} {...register("email")} />
@@ -70,9 +70,9 @@ export default function RegisterPage() {
               {isLoading ? <><Loader2 className="h-5 w-5 animate-spin" /> جاري...</> : "إنشاء حساب"}
             </Button>
           </form>
-          <p className="mt-6 text-center text-sm text-gray-600">
+          <p className="mt-6 text-center text-sm text-[#6b6560]">
             لديك حساب بالفعل؟{" "}
-            <Link href="/login" className="font-medium text-blue-400 transition-colors hover:text-blue-300">
+            <Link href="/login" className="font-medium text-amber-400 transition-colors hover:text-amber-300">
               تسجيل الدخول
             </Link>
           </p>

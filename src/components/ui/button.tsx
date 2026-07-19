@@ -2,17 +2,17 @@ import { cn } from "@/lib/utils";
 
 const variantStyles: Record<string, string> = {
   default:
-    "bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20 border border-gray-200 dark:border-white/10",
+    "bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-[#d0cbc2] hover:bg-gray-200 dark:hover:bg-white/[0.1] border border-gray-200 dark:border-white/[0.06]",
   primary:
-    "bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-600/20",
+    "bg-gradient-to-r from-amber-500 to-amber-600 text-[#08080f] hover:from-amber-400 hover:to-amber-500 shadow-lg shadow-amber-500/20",
   destructive:
-    "bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20 border border-red-500/20",
+    "bg-red-500/10 text-red-500 dark:text-red-400 hover:bg-red-500/20 border border-red-500/15",
   outline:
-    "border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5",
+    "border border-white/[0.08] text-[#9a948a] hover:bg-white/[0.03] hover:text-white",
   ghost:
-    "text-gray-500 dark:text-gray-400 hover:text-white hover:bg-white/5",
+    "text-[#9a948a] dark:text-[#9a948a] hover:text-white hover:bg-white/[0.04]",
   secondary:
-    "bg-dark-800 text-white hover:bg-dark-700 border border-white/10",
+    "bg-dark-700 text-white hover:bg-dark-600 border border-white/[0.06]",
 };
 
 const sizeStyles: Record<string, string> = {
@@ -39,7 +39,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:ring-offset-1 dark:focus:ring-offset-dark-900 disabled:opacity-50 disabled:pointer-events-none",
+        "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500/25 focus:ring-offset-1 dark:focus:ring-offset-[#08080f] disabled:opacity-50 disabled:pointer-events-none",
         variantStyles[variant],
         sizeStyles[size],
         className

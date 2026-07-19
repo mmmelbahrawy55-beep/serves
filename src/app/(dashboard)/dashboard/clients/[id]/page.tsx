@@ -217,7 +217,7 @@ export default function ClientDetailPage() {
             <ArrowRight className="h-4 w-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{client.name}</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{client.name}</h1>
             <p className="text-gray-500 mt-1">{client.company || "—"}</p>
           </div>
         </div>
@@ -252,25 +252,25 @@ export default function ClientDetailPage() {
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الاسم</p>
-              <p className="font-medium text-gray-900">{client.name}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{client.name}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">البريد الإلكتروني</p>
-              <p className="font-medium text-gray-900 dir-ltr text-left">{client.email || "—"}</p>
+              <p className="font-medium text-gray-900 dark:text-white dir-ltr text-left">{client.email || "—"}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الهاتف</p>
-              <p className="font-medium text-gray-900">{client.phone || "—"}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{client.phone || "—"}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الشركة</p>
-              <p className="font-medium text-gray-900">{client.company || "—"}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{client.company || "—"}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
@@ -289,7 +289,7 @@ export default function ClientDetailPage() {
             <Card className="border-0 shadow-sm md:col-span-2 lg:col-span-3">
               <CardContent className="p-5">
                 <p className="text-xs text-gray-500 mb-1">ملاحظات</p>
-                <p className="text-gray-900 whitespace-pre-wrap">{client.notes}</p>
+                <p className="text-gray-900 dark:text-white whitespace-pre-wrap">{client.notes}</p>
               </CardContent>
             </Card>
           )}

@@ -151,7 +151,7 @@ export default function InventoryPage() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input
-            className="flex h-10 w-full rounded-lg border border-gray-200 bg-white pr-10 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex h-10 w-full rounded-lg border border-gray-200 bg-white dark:bg-dark-700 pr-10 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="بحث عن منتج..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -272,11 +272,11 @@ export default function InventoryPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">المخازن</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">المخازن</h1>
         <p className="text-gray-500 mt-1">إدارة المنتجات والموردين والمشتريات</p>
       </div>
 
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-lg w-fit">
+      <div className="flex gap-1 bg-gray-100 dark:bg-white/5 p-1 rounded-lg w-fit">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -286,7 +286,7 @@ export default function InventoryPage() {
             }}
             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === tab.id
-                ? "bg-white text-gray-900 shadow-sm"
+                ? "bg-white dark:bg-dark-700 text-gray-900 dark:text-white shadow-sm"
                 : "text-gray-500 hover:text-gray-700"
             }`}
           >

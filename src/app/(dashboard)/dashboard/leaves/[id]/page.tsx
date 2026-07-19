@@ -88,7 +88,7 @@ export default function LeaveDetailPage() {
           <ArrowLeft className="h-4 w-4" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">تفاصيل الإجازة</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">تفاصيل الإجازة</h1>
           <p className="text-gray-500 mt-1">عرض معلومات طلب الإجازة</p>
         </div>
       </div>
@@ -140,7 +140,7 @@ export default function LeaveDetailPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg">
+              <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 font-bold text-lg">
                 {leave.employee.name.charAt(0)}
               </div>
               <div>

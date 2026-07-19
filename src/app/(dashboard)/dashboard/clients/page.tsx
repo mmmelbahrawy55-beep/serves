@@ -141,7 +141,7 @@ export default function ClientsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">العملاء</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">العملاء</h1>
           <p className="text-gray-500 mt-1">إدارة علاقات العملاء (CRM)</p>
         </div>
         <Button variant="primary" onClick={openAddModal}>
@@ -155,7 +155,7 @@ export default function ClientsPage() {
           <div className="relative flex-1 max-w-sm">
             <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
-              className="flex h-10 w-full rounded-lg border border-gray-200 bg-white pr-10 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex h-10 w-full rounded-lg border border-gray-200 bg-white dark:bg-dark-700 pr-10 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="بحث عن عميل..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}

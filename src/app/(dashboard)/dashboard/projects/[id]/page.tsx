@@ -237,7 +237,7 @@ export default function ProjectDetailPage() {
           </Button>
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-gray-900">{project.name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{project.name}</h1>
               {projectStatusBadge(project.status)}
             </div>
             <p className="text-gray-500 mt-1">{project.description || "—"}</p>
@@ -253,25 +253,25 @@ export default function ProjectDetailPage() {
         <Card className="border-0 shadow-sm">
           <CardContent className="p-4">
             <p className="text-xs text-gray-500 mb-1">الميزانية</p>
-            <p className="font-medium text-gray-900">{formatCurrency(project.budget)}</p>
+            <p className="font-medium text-gray-900 dark:text-white">{formatCurrency(project.budget)}</p>
           </CardContent>
         </Card>
         <Card className="border-0 shadow-sm">
           <CardContent className="p-4">
             <p className="text-xs text-gray-500 mb-1">تاريخ البدء</p>
-            <p className="font-medium text-gray-900">{formatDate(project.startDate)}</p>
+            <p className="font-medium text-gray-900 dark:text-white">{formatDate(project.startDate)}</p>
           </CardContent>
         </Card>
         <Card className="border-0 shadow-sm">
           <CardContent className="p-4">
             <p className="text-xs text-gray-500 mb-1">تاريخ الانتهاء</p>
-            <p className="font-medium text-gray-900">{project.endDate ? formatDate(project.endDate) : "—"}</p>
+            <p className="font-medium text-gray-900 dark:text-white">{project.endDate ? formatDate(project.endDate) : "—"}</p>
           </CardContent>
         </Card>
         <Card className="border-0 shadow-sm">
           <CardContent className="p-4">
             <p className="text-xs text-gray-500 mb-1">المهام</p>
-            <p className="font-medium text-gray-900">{tasks.length}</p>
+            <p className="font-medium text-gray-900 dark:text-white">{tasks.length}</p>
           </CardContent>
         </Card>
       </div>
@@ -280,7 +280,7 @@ export default function ProjectDetailPage() {
         <Card className="border-0 shadow-sm">
           <CardContent className="p-4">
             <p className="text-xs text-gray-500 mb-1">العميل</p>
-            <p className="font-medium text-gray-900">{project.client?.name || "—"}</p>
+            <p className="font-medium text-gray-900 dark:text-white">{project.client?.name || "—"}</p>
             {project.client?.company && (
               <p className="text-sm text-gray-500">{project.client.company}</p>
             )}
@@ -289,7 +289,7 @@ export default function ProjectDetailPage() {
         <Card className="border-0 shadow-sm">
           <CardContent className="p-4">
             <p className="text-xs text-gray-500 mb-1">مدير المشروع</p>
-            <p className="font-medium text-gray-900">{project.manager?.name || "—"}</p>
+            <p className="font-medium text-gray-900 dark:text-white">{project.manager?.name || "—"}</p>
             {project.manager?.email && (
               <p className="text-sm text-gray-500">{project.manager.email}</p>
             )}
@@ -315,20 +315,20 @@ export default function ProjectDetailPage() {
             {kanbanColumns.map((col) => {
               const colTasks = groupedTasks[col] || [];
               return (
-                <div key={col} className="bg-gray-50 rounded-lg p-3 min-h-[200px]">
+                <div key={col} className="bg-gray-50 dark:bg-white/5 rounded-lg p-3 min-h-[200px]">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm font-medium text-gray-700">
                       {kanbanLabels[col]}
                     </span>
-                    <span className="text-xs text-gray-400 bg-white rounded-full px-2 py-0.5">
+                    <span className="text-xs text-gray-400 bg-white dark:bg-dark-700 rounded-full px-2 py-0.5">
                       {colTasks.length}
                     </span>
                   </div>
                   <div className="space-y-2">
                     {colTasks.map((task) => (
-                      <div key={task.id} className="bg-white rounded-lg p-3 shadow-sm border border-gray-200">
+                      <div key={task.id} className="bg-white dark:bg-dark-700 rounded-lg p-3 shadow-sm border border-gray-200">
                         <div className="flex items-start justify-between gap-2">
-                          <p className="text-sm font-medium text-gray-900">{task.name}</p>
+                          <p className="text-sm font-medium text-gray-900 dark:text-white">{task.name}</p>
                           <Badge
                             variant={priorityConfig[task.priority]?.variant || "default"}
                             className="text-[10px]"

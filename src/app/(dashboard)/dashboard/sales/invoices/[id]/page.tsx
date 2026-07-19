@@ -65,11 +65,11 @@ const statusLabels: Record<string, string> = {
 };
 
 const statusColors: Record<string, string> = {
-  DRAFT: "bg-gray-100 text-gray-700",
-  SENT: "bg-blue-100 text-blue-700",
-  PAID: "bg-green-100 text-green-700",
-  CANCELLED: "bg-red-100 text-red-700",
-  OVERDUE: "bg-orange-100 text-orange-700",
+  DRAFT: "bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-gray-300",
+  SENT: "bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300",
+  PAID: "bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-300",
+  CANCELLED: "bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-300",
+  OVERDUE: "bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300",
 };
 
 export default function InvoiceDetailPage() {
@@ -148,7 +148,7 @@ export default function InvoiceDetailPage() {
             <ArrowRight className="h-4 w-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">فاتورة #{invoice.invoiceNumber}</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">فاتورة #{invoice.invoiceNumber}</h1>
             <p className="text-gray-500 mt-1">عرض تفاصيل الفاتورة</p>
           </div>
         </div>
@@ -180,15 +180,15 @@ export default function InvoiceDetailPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <p className="text-xs text-gray-500 mb-1">رقم الفاتورة</p>
-              <p className="font-medium text-gray-900">{invoice.invoiceNumber}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{invoice.invoiceNumber}</p>
             </div>
             <div>
               <p className="text-xs text-gray-500 mb-1">التاريخ</p>
-              <p className="font-medium text-gray-900">{formatDate(invoice.date)}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{formatDate(invoice.date)}</p>
             </div>
             <div>
               <p className="text-xs text-gray-500 mb-1">تاريخ الاستحقاق</p>
-              <p className="font-medium text-gray-900">
+              <p className="font-medium text-gray-900 dark:text-white">
                 {invoice.dueDate ? formatDate(invoice.dueDate) : "—"}
               </p>
             </div>
@@ -207,7 +207,7 @@ export default function InvoiceDetailPage() {
           {invoice.client && (
             <div className="border-t border-gray-200 pt-4">
               <p className="text-xs text-gray-500 mb-1">العميل</p>
-              <p className="font-medium text-gray-900">{invoice.client.name}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{invoice.client.name}</p>
               {invoice.client.company && (
                 <p className="text-sm text-gray-500">{invoice.client.company}</p>
               )}

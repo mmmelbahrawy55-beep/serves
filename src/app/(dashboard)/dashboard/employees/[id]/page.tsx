@@ -217,7 +217,7 @@ export default function EmployeeDetailPage() {
             <ArrowRight className="h-4 w-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{employee.name}</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{employee.name}</h1>
             <p className="text-gray-500 mt-1">{employee.position || "—"}</p>
           </div>
         </div>
@@ -252,37 +252,37 @@ export default function EmployeeDetailPage() {
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الاسم</p>
-              <p className="font-medium text-gray-900">{employee.name}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{employee.name}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">البريد الإلكتروني</p>
-              <p className="font-medium text-gray-900 dir-ltr text-left">{employee.email}</p>
+              <p className="font-medium text-gray-900 dark:text-white dir-ltr text-left">{employee.email}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الهاتف</p>
-              <p className="font-medium text-gray-900">{employee.phone || "—"}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{employee.phone || "—"}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">القسم</p>
-              <p className="font-medium text-gray-900">{employee.department || "—"}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{employee.department || "—"}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الوظيفة</p>
-              <p className="font-medium text-gray-900">{employee.position || "—"}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{employee.position || "—"}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">الراتب</p>
-              <p className="font-medium text-gray-900">
+              <p className="font-medium text-gray-900 dark:text-white">
                 {employee.salary ? formatCurrency(employee.salary) : "—"}
               </p>
             </CardContent>
@@ -290,7 +290,7 @@ export default function EmployeeDetailPage() {
           <Card className="border-0 shadow-sm">
             <CardContent className="p-5">
               <p className="text-xs text-gray-500 mb-1">تاريخ التعيين</p>
-              <p className="font-medium text-gray-900">{formatDate(employee.hireDate)}</p>
+              <p className="font-medium text-gray-900 dark:text-white">{formatDate(employee.hireDate)}</p>
             </CardContent>
           </Card>
           <Card className="border-0 shadow-sm">

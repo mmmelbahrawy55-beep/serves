@@ -38,7 +38,8 @@ export default function EmployeesPage() {
       const params = new URLSearchParams();
       if (search) params.set("search", search);
       const res = await fetch(`/api/employees?${params}`);
-      setEmployees(Array.isArray(await res.json()) ? await res.json() : []);
+      const data = await res.json();
+      setEmployees(Array.isArray(data) ? data : []);
     } catch { toast.error("فشل تحميل البيانات"); } finally { setIsLoading(false); }
   };
 

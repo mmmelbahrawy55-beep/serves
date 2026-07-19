@@ -116,7 +116,7 @@ export default function PayrollPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">الرواتب</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">الرواتب</h1>
           <p className="text-gray-500 mt-1">إدارة رواتب الموظفين</p>
         </div>
         <Button variant="primary" onClick={handleGenerate} disabled={generating}>

@@ -156,7 +156,7 @@ export default function NewInvoicePage() {
           <ArrowRight className="h-4 w-4" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">إنشاء فاتورة جديدة</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">إنشاء فاتورة جديدة</h1>
           <p className="text-gray-500 mt-1">إدخال بيانات الفاتورة وعناصرها</p>
         </div>
       </div>
@@ -241,7 +241,7 @@ export default function NewInvoicePage() {
                     </TableCell>
                     <TableCell>
                       <input
-                        className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex h-10 w-full rounded-lg border border-gray-200 bg-white dark:bg-dark-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="وصف الصنف"
                         value={item.description}
                         onChange={(e) => updateItem(index, "description", e.target.value)}
@@ -251,7 +251,7 @@ export default function NewInvoicePage() {
                       <input
                         type="number"
                         min="1"
-                        className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex h-10 w-full rounded-lg border border-gray-200 bg-white dark:bg-dark-700 px-3 py-2 text-sm text-gray-900 dark:text-white text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
                         value={item.quantity}
                         onChange={(e) => updateItem(index, "quantity", Math.max(1, parseInt(e.target.value) || 1))}
                       />
@@ -260,7 +260,7 @@ export default function NewInvoicePage() {
                       <input
                         type="number"
                         step="0.01"
-                        className="flex h-10 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 text-left font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex h-10 w-full rounded-lg border border-gray-200 bg-white dark:bg-dark-700 px-3 py-2 text-sm text-gray-900 dark:text-white text-left font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
                         value={item.unitPrice}
                         onChange={(e) => updateItem(index, "unitPrice", parseFloat(e.target.value) || 0)}
                       />
@@ -289,7 +289,7 @@ export default function NewInvoicePage() {
           </CardHeader>
           <CardContent>
             <textarea
-              className="flex min-h-[100px] w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex min-h-[100px] w-full rounded-lg border border-gray-200 bg-white dark:bg-dark-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="ملاحظات..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}

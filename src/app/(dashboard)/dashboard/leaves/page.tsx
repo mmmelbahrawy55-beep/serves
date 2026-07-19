@@ -42,12 +42,13 @@ export default function LeavesPage() {
       const params = new URLSearchParams();
       if (filter) params.set("status", filter);
       const res = await fetch(`/api/leaves?${params}`);
-      setLeaves(Array.isArray(await res.json()) ? await res.json() : []);
+      const data = await res.json();
+      setLeaves(Array.isArray(data) ? data : []);
     } catch { toast.error("فشل التحميل"); }
   };
 
   const fetchEmployees = async () => {
-    try { const res = await fetch("/api/employees"); setEmployees(Array.isArray(await res.json()) ? await res.json() : []); } catch { /* ignore */ }
+      try { const res = await fetch("/api/employees"); const data = await res.json(); setEmployees(Array.isArray(data) ? data : []); } catch { /* ignore */ }
   };
 
   useEffect(() => {

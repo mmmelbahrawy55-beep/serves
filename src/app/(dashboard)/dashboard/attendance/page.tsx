@@ -103,7 +103,7 @@ export default function AttendancePage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">الحضور والانصراف</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">الحضور والانصراف</h1>
           <p className="text-gray-500 mt-1">تسجيل ومتابعة حضور الموظفين</p>
         </div>
         <div className="flex items-center gap-3">

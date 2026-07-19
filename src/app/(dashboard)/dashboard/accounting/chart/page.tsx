@@ -138,7 +138,7 @@ export default function ChartOfAccountsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">دليل الحسابات</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">دليل الحسابات</h1>
           <p className="text-gray-500 mt-1">إدارة حسابات الشركة</p>
         </div>
         <Button variant="primary" onClick={() => setModalOpen(true)}>
@@ -170,7 +170,7 @@ export default function ChartOfAccountsPage() {
                   <div key={type} className="border border-gray-200 rounded-lg overflow-hidden">
                     <button
                       onClick={() => toggleType(type)}
-                      className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors text-right"
+                      className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-white/5 hover:bg-gray-100 transition-colors text-right"
                     >
                       <div className="flex items-center gap-2">
                         {isExpanded ? (

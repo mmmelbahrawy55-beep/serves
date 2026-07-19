@@ -77,7 +77,7 @@ export default function AccountingPage() {
       value: summary?.totalAssets ?? 0,
       icon: TrendingUp,
       color: "bg-blue-500",
-      bgColor: "bg-blue-50",
+      bgColor: "bg-blue-50 dark:bg-blue-500/10",
       textColor: "text-blue-600",
     },
     {
@@ -85,7 +85,7 @@ export default function AccountingPage() {
       value: summary?.totalLiabilities ?? 0,
       icon: TrendingDown,
       color: "bg-red-500",
-      bgColor: "bg-red-50",
+      bgColor: "bg-red-50 dark:bg-red-500/10",
       textColor: "text-red-600",
     },
     {
@@ -93,7 +93,7 @@ export default function AccountingPage() {
       value: summary?.totalEquity ?? 0,
       icon: DollarSign,
       color: "bg-emerald-500",
-      bgColor: "bg-emerald-50",
+      bgColor: "bg-emerald-50 dark:bg-emerald-500/10",
       textColor: "text-emerald-600",
     },
     {
@@ -101,7 +101,7 @@ export default function AccountingPage() {
       value: summary ? (summary.totalIncome - summary.totalExpenses) : 0,
       icon: PieChart,
       color: "bg-purple-500",
-      bgColor: "bg-purple-50",
+      bgColor: "bg-purple-50 dark:bg-purple-500/10",
       textColor: "text-purple-600",
     },
   ];
@@ -109,7 +109,7 @@ export default function AccountingPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">المحاسبة</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">المحاسبة</h1>
         <p className="text-gray-500 mt-1">النظرة العامة المالية للشركة</p>
       </div>
 
@@ -120,7 +120,7 @@ export default function AccountingPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">{card.title}</p>
-                  <p className="text-2xl font-bold text-gray-900">
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white">
                     {formatCurrency(card.value)}
                   </p>
                 </div>

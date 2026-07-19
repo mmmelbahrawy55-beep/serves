@@ -55,7 +55,7 @@ const reportCards = [
     description: "تحليل المبيعات والإيرادات الشهرية",
     icon: BarChart3,
     color: "bg-blue-500",
-    bgColor: "bg-blue-50",
+    bgColor: "bg-blue-50 dark:bg-blue-500/10",
     textColor: "text-blue-600",
     type: "sales",
   },
@@ -64,7 +64,7 @@ const reportCards = [
     description: "إحصائيات الموظفين والأقسام",
     icon: Users,
     color: "bg-emerald-500",
-    bgColor: "bg-emerald-50",
+    bgColor: "bg-emerald-50 dark:bg-emerald-500/10",
     textColor: "text-emerald-600",
     type: "employees",
   },
@@ -73,7 +73,7 @@ const reportCards = [
     description: "حالة المخزون وتصنيف المنتجات",
     icon: Package,
       color: "bg-violet-500",
-      bgColor: "bg-violet-50",
+      bgColor: "bg-violet-50 dark:bg-violet-500/10",
       textColor: "text-violet-600",
     type: "inventory",
   },
@@ -82,7 +82,7 @@ const reportCards = [
     description: "الإيرادات والمصروفات والأرباح",
     icon: DollarSign,
     color: "bg-purple-500",
-    bgColor: "bg-purple-50",
+    bgColor: "bg-purple-50 dark:bg-purple-500/10",
     textColor: "text-purple-600",
     type: "financial",
   },
@@ -198,7 +198,7 @@ export default function ReportsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">التقارير</h1>
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">التقارير</h1>
         <p className="text-gray-500 mt-1">إنشاء وعرض التقارير والتحليلات</p>
       </div>
 

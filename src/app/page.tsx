@@ -83,13 +83,14 @@ export default function LandingPage() {
           </div>
 
           {/* Title */}
-          <h1 className="mb-5 text-4xl font-black leading-tight text-[#e8e4dd] sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mb-2 text-4xl font-black leading-tight text-[#e8e4dd] sm:text-5xl md:text-6xl lg:text-7xl">
             نظام إدارة
-            <br />
+          </h1>
+          <h2 className="mb-6 mt-4 text-4xl font-black leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-600 bg-clip-text text-transparent">
               الشركات
             </span>
-          </h1>
+          </h2>
 
           {/* Subtitle */}
           <p className="mx-auto mb-9 max-w-xl text-sm leading-relaxed text-[#9a948a] sm:text-base md:text-lg">

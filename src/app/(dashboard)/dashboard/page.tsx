@@ -98,9 +98,9 @@ export default function DashboardPage() {
       title: "الفواتير النشطة",
       value: stats?.pendingInvoices ?? 0,
       icon: FileText,
-      color: "bg-amber-500",
-      bgColor: "bg-amber-50",
-      textColor: "text-amber-600",
+      color: "bg-violet-500",
+      bgColor: "bg-violet-50",
+      textColor: "text-violet-600",
     },
     {
       title: "إجمالي الإيرادات",

@@ -52,7 +52,7 @@ export function Dropdown({ trigger, items, align = "start" }: DropdownProps) {
                   "flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors",
                   item.danger
                     ? "text-red-500 hover:bg-red-500/10"
-                    : "hover:bg-gold-500/5",
+                    : "hover:bg-blue-500/5",
                   item.disabled && "opacity-50 cursor-not-allowed"
                 )}
                 onClick={() => {

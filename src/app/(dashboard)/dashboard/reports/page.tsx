@@ -72,9 +72,9 @@ const reportCards = [
     title: "تقارير المخازن",
     description: "حالة المخزون وتصنيف المنتجات",
     icon: Package,
-    color: "bg-amber-500",
-    bgColor: "bg-amber-50",
-    textColor: "text-amber-600",
+      color: "bg-violet-500",
+      bgColor: "bg-violet-50",
+      textColor: "text-violet-600",
     type: "inventory",
   },
   {

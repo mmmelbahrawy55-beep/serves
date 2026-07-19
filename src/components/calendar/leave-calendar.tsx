@@ -107,7 +107,7 @@ export function LeaveCalendar({ onDateClick }: Props) {
   const statusColor = (status: string) => {
     switch (status) {
       case "APPROVED": return "bg-green-100 text-green-700 border-green-200";
-      case "PENDING": return "bg-yellow-100 text-yellow-700 border-yellow-200";
+      case "PENDING": return "bg-blue-100 text-blue-700 border-blue-200";
       case "REJECTED": return "bg-red-100 text-red-700 border-red-200";
       case "PRESENT": return "bg-blue-100 text-blue-700 border-blue-200";
       case "LATE": return "bg-orange-100 text-orange-700 border-orange-200";
@@ -137,7 +137,7 @@ export function LeaveCalendar({ onDateClick }: Props) {
             <span className="w-2 h-2 rounded-full bg-green-500" /> إجازة معتمدة
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-yellow-500" /> معلقة
+            <span className="w-2 h-2 rounded-full bg-blue-500" /> معلقة
           </span>
           <span className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-blue-500" /> حضور

@@ -30,7 +30,7 @@ export function TableRow({ className, children, ...props }: React.HTMLAttributes
   return (
     <tr
       className={cn(
-        "border-b border-gray-100 dark:border-white/5 transition-colors hover:bg-gold-500/[0.02]",
+        "border-b border-gray-100 dark:border-white/5 transition-colors hover:bg-blue-500/[0.02]",
         className
       )}
       {...props}

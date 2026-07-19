@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Building2, Loader2, Sparkles } from "lucide-react";
+import { Building2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -70,80 +70,60 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dark-950 via-dark-900 to-dark-950 flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-dot-gold opacity-30" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl" />
-
-      <div className="w-full max-w-md relative z-10">
+    <div className="min-h-screen bg-dark-950 flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="relative inline-block">
-            <div className="absolute inset-0 bg-gold-500/20 blur-2xl rounded-full" />
-            <div className="relative w-20 h-20 bg-gradient-to-br from-gold-500 to-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-gold-500/30 animate-float">
-              <Building2 className="w-10 h-10 text-dark-900" />
-            </div>
+          <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-xl shadow-blue-600/20 mb-4">
+            <Building2 className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-gold-400 to-yellow-500 bg-clip-text text-transparent">
-            نظام إدارة الشركات
-          </h1>
-          <p className="text-gray-400 mt-2">تسجيل الدخول إلى حسابك</p>
+          <h1 className="text-2xl font-bold text-white">تسجيل الدخول</h1>
+          <p className="text-gray-500 text-sm mt-1">أدخل بريدك الإلكتروني وكلمة المرور</p>
         </div>
 
-        <Card className="border border-white/5 shadow-2xl shadow-gold-500/5 bg-dark-800/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-center text-white text-xl">
-              <Sparkles className="h-5 w-5 text-gold-500 inline-block ml-2" />
-              مرحباً بعودتك
-            </CardTitle>
-            <CardDescription className="text-center text-gray-400">
-              أدخل بريدك الإلكتروني وكلمة المرور
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <Input
-                label="البريد الإلكتروني"
-                type="email"
-                placeholder="example@company.com"
-                error={errors.email?.message}
-                {...register("email")}
-              />
-              <Input
-                label="كلمة المرور"
-                type="password"
-                placeholder="••••••••"
-                error={errors.password?.message}
-                {...register("password")}
-              />
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                className="w-full"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                    جاري تسجيل الدخول...
-                  </>
-                ) : (
-                  "تسجيل الدخول"
-                )}
-              </Button>
-            </form>
+        <div className="rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <Input
+              label="البريد الإلكتروني"
+              type="email"
+              placeholder="example@company.com"
+              error={errors.email?.message}
+              {...register("email")}
+            />
+            <Input
+              label="كلمة المرور"
+              type="password"
+              placeholder="••••••••"
+              error={errors.password?.message}
+              {...register("password")}
+            />
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              className="w-full"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  جاري تسجيل الدخول...
+                </>
+              ) : (
+                "تسجيل الدخول"
+              )}
+            </Button>
+          </form>
 
-            <div className="mt-6 text-center text-sm">
-              <span className="text-gray-500">ليس لديك حساب؟ </span>
-              <Link
-                href="/register"
-                className="text-gold-400 hover:text-gold-300 font-medium transition-colors"
-              >
-                إنشاء حساب جديد
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+          <div className="mt-6 text-center text-sm">
+            <span className="text-gray-600">ليس لديك حساب؟ </span>
+            <Link
+              href="/register"
+              className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
+            >
+              إنشاء حساب جديد
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

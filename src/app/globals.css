@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,13 +9,13 @@
   :root {
     --sidebar-width: 260px;
     --sidebar-collapsed: 64px;
-    --font-primary: 'Alexandria', 'Tajawal', system-ui, sans-serif;
+    --font-primary: 'Cairo', 'Noto Kufi Arabic', system-ui, sans-serif;
 
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --bg-tertiary: #f1f5f9;
     --bg-card: #ffffff;
-    --bg-sidebar: #0d0d1a;
+    --bg-sidebar: #0a0a1a;
     --bg-navbar: rgba(255, 255, 255, 0.85);
 
     --text-primary: #0f172a;
@@ -26,36 +26,40 @@
     --border-primary: #e2e8f0;
     --border-secondary: #f1f5f9;
 
-    --gold: #FFD700;
-    --gold-light: #fff9d6;
-    --gold-dark: #b39b00;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-soft: #dbeafe;
 
     --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
     --shadow-card-hover: 0 10px 40px -10px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
   }
 
   .dark {
-    --bg-primary: #0d0d1a;
-    --bg-secondary: #12122a;
-    --bg-tertiary: #1a1a2e;
-    --bg-card: #16162a;
-    --bg-sidebar: #070714;
-    --bg-navbar: rgba(13, 13, 26, 0.9);
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #0d0d24;
+    --bg-tertiary: #111128;
+    --bg-card: #0f0f22;
+    --bg-sidebar: #060612;
+    --bg-navbar: rgba(10, 10, 26, 0.9);
 
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
     --text-tertiary: #64748b;
-    --text-inverse: #0d0d1a;
+    --text-inverse: #0a0a1a;
 
     --border-primary: #1e2d3d;
-    --border-secondary: #1a1a2e;
+    --border-secondary: #111128;
 
-    --shadow-card: 0 4px 20px -5px rgba(0, 0, 0, 0.3);
-    --shadow-card-hover: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --accent-soft: #1e3a5f;
+
+    --shadow-card: 0 4px 20px -5px rgba(0, 0, 0, 0.4);
+    --shadow-card-hover: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
   }
 
   * {
-    @apply border-gray-200 dark:border-gray-700/30;
+    @apply border-gray-200 dark:border-gray-700/20;
   }
 
   html {
@@ -68,38 +72,29 @@
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     font-family: var(--font-primary);
-    line-height: 1.6;
+    line-height: 1.7;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
     font-weight: 700;
-    color: var(--text-primary);
+    letter-spacing: -0.02em;
   }
 
   ::selection {
-    background-color: rgba(255, 215, 0, 0.3);
+    background-color: rgba(59, 130, 246, 0.2);
     color: var(--text-primary);
   }
 }
 
 @layer components {
   .sidebar-link {
-    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 relative overflow-hidden;
-  }
-
-  .sidebar-link::before {
-    content: '';
-    @apply absolute right-0 top-1/2 -translate-y-1/2 w-1 h-0 rounded-full bg-gold-500 transition-all duration-300 opacity-0;
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200;
   }
 
   .sidebar-link-active {
-    @apply bg-gradient-to-r from-gold-500/10 to-transparent text-gold-500 shadow-sm border border-gold-500/10;
-  }
-
-  .sidebar-link-active::before {
-    @apply h-8 opacity-100;
+    @apply bg-blue-600/10 text-blue-500 border border-blue-500/10;
   }
 
   .sidebar-link-inactive {
@@ -109,46 +104,15 @@
   .card-base {
     background-color: var(--bg-card);
     box-shadow: var(--shadow-card);
-    @apply rounded-2xl border border-transparent dark:border-white/5 transition-all duration-300;
+    @apply rounded-2xl border border-transparent dark:border-white/[0.03] transition-all duration-300;
   }
 
   .card-base:hover {
     box-shadow: var(--shadow-card-hover);
-    @apply border-gray-200 dark:border-gold-500/10;
-  }
-
-  .card-glow {
-    @apply card-base;
-    box-shadow: var(--shadow-card), 0 0 0 1px rgba(255, 215, 0, 0.05);
-  }
-
-  .card-glow:hover {
-    box-shadow: var(--shadow-card-hover), 0 0 30px rgba(255, 215, 0, 0.08);
-    @apply border-gold-500/20;
   }
 
   .page-container {
     @apply p-4 lg:p-6 space-y-6;
-  }
-
-  .page-header {
-    @apply flex items-center justify-between;
-  }
-
-  .page-title {
-    @apply text-2xl lg:text-3xl font-bold tracking-tight;
-    color: var(--text-primary);
-  }
-
-  .stat-card {
-    background-color: var(--bg-card);
-    box-shadow: var(--shadow-card);
-    @apply rounded-2xl p-6 transition-all duration-300 border border-transparent dark:border-white/5;
-  }
-
-  .stat-card:hover {
-    box-shadow: var(--shadow-card-hover), 0 0 30px rgba(255, 215, 0, 0.05);
-    @apply -translate-y-0.5 border-gold-500/20;
   }
 
   .form-label {
@@ -164,72 +128,23 @@
   }
 
   .form-input:focus {
-    border-color: #FFD700;
-    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
   }
 
-  .data-table {
-    @apply w-full rounded-2xl overflow-hidden;
-    background-color: var(--bg-card);
-    box-shadow: var(--shadow-card);
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-bold transition-all duration-200;
+    background-color: var(--accent);
+    color: white;
   }
 
-  .data-table th {
-    @apply px-6 py-3.5 text-right text-xs font-semibold uppercase tracking-wider;
-    color: var(--text-tertiary);
-    background-color: var(--bg-tertiary);
-  }
-
-  .data-table td {
-    @apply px-6 py-4 text-sm border-t;
-    color: var(--text-primary);
-    border-color: var(--border-secondary);
-  }
-
-  .data-table tr:hover td {
-    background-color: rgba(255, 215, 0, 0.03);
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-yellow-500;
-  }
-
-  .glass {
-    background-color: var(--bg-navbar);
-    backdrop-filter: blur(20px);
-    @apply border-b border-white/10 dark:border-white/5;
-  }
-
-  .gold-border {
-    border: 1px solid rgba(255, 215, 0, 0.2);
-  }
-
-  .gold-border-hover:hover {
-    border-color: rgba(255, 215, 0, 0.5);
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.08);
-  }
-
-  .btn-gold {
-    @apply bg-gradient-to-r from-gold-500 to-yellow-500 text-dark-900 font-bold rounded-xl px-5 py-2.5 transition-all duration-300 hover:shadow-gold hover:scale-[1.02] active:scale-[0.98];
-  }
-
-  .btn-ghost {
-    @apply rounded-xl px-4 py-2 transition-all duration-200;
-    color: var(--text-secondary);
-  }
-
-  .btn-ghost:hover {
-    background-color: rgba(255, 215, 0, 0.08);
-    color: #FFD700;
-  }
-
-  .badge-gold {
-    @apply bg-gold-500/10 text-gold-600 dark:text-gold-400 border border-gold-500/20 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  .btn-primary:hover {
+    background-color: var(--accent-hover);
   }
 
   .divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15), transparent);
   }
 }
 
@@ -238,27 +153,19 @@
     text-wrap: balance;
   }
 
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600;
+  }
+
+  .glass {
+    background-color: var(--bg-navbar);
+    backdrop-filter: blur(20px);
+    @apply border-b border-white/5;
+  }
+
   .scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 215, 0, 0.2) transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 215, 0, 0.2);
-    border-radius: 20px;
-  }
-
-  .bg-dot-gold {
-    background-image: radial-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
+    scrollbar-color: rgba(59, 130, 246, 0.2) transparent;
   }
 }
 

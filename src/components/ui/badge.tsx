@@ -4,7 +4,7 @@ const variantStyles: Record<string, string> = {
   default:
     "bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-white/10",
   primary:
-    "bg-gold-500/10 text-gold-600 dark:text-gold-400 border border-gold-500/20",
+    "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20",
   success:
     "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20",
   warning:
